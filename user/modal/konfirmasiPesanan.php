@@ -16,7 +16,7 @@
                  </button>
              </div>
              <!-- Modal body -->
-             <form class="p-4 md:p-5">
+             <form class="p-4 md:p-5" id="form-<?= $rowType['slug'] ?>">
                  <div class="grid gap-4 mb-4 grid-cols-2">
                      <input type="hidden" name="checkin" id="checkin" value="<?= $checkin ?>">
                      <input type="hidden" name="checkout" id="checkout" value="<?= $checkout ?>">
@@ -33,14 +33,11 @@
                      </div>
                      <div class="col-span-2">
                          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Pilih Kamar</label>
-
-                         <select name="kamar" id="kamar" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required="">
-
+                         <select name="kamar" id="kamar" class="kamar-dropdown bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required="">
                              <option selected>--Pilih Kamar--</option>
 
                              <?php
                                 $kamar = mysqli_query($conn, "SELECT * FROM kamar WHERE tipe_kamar_id = '$rowType[tipe_kamar_id]' AND status_kamar = 'tersedia'");
-
                                 while ($rowKamar = mysqli_fetch_assoc($kamar)) :
                                 ?>
                                  <option value="<?= $rowKamar['kamar_id'] ?>"><?= $rowKamar['kamar_id'] ?></option>

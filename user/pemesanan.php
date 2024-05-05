@@ -3,7 +3,7 @@
 require 'function/koneksi.php';
 
 if (!isset($_POST['checkin']) && !isset($_POST['checkout']) && !isset($_POST['jmlh'])) {
-    header('location: ../index.php?error=true');
+    // header('location: ../index.php?error=true');
 }
 
 
@@ -14,7 +14,7 @@ $jmlh = $_POST['jmlh'];
 
 // pengecekan checkin dan checkout
 if ($checkin > $checkout) {
-    header('location: ../index.php?error=true');
+    // header('location: ../index.php?error=true');
 }
 
 // ambil data type dan nomor kamar
@@ -33,28 +33,28 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
     <title>Pemesanan Kamar Nuansa Nusantara</title>
 
     <!-- tailwind -->
-    <link href="./src/output.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- flowbite -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 
     <!-- mycss -->
-    <link rel="stylesheet" href="src/style.css" />
+    <link rel="stylesheet" href="../src/style.css" />
 
     <!-- icons -->
     <script src="https://kit.fontawesome.com/22f19496c5.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="overflow-x-hidden bg-slate-100">
+<body class="overflow-x-hidden bg-slate-100 w-screen">
 
     <!-- navbar -->
     <section>
-        <nav class="bg-blue-800 border-gray-200">
+        <nav class="bg-blue-800 border-gray-200 w-screen">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-bold whitespace-nowrap text-yellow-400">Nuansa Nusantara</span>
+                    <span class="self-center text-lg lg:text-2xl font-bold whitespace-nowrap text-yellow-400">Nuansa Nusantara</span>
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-default" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
@@ -71,26 +71,6 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
                                 <a href="keranjang.php" class="text-white bg-yellow-400 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm px-4 py-1 text-center">
                                     <i class="fa-solid fa-basket-shopping text-lg rounded-full px-4 text-white "></i>
                                 </a>
-
-
-
-                                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
-
-                                    <span class="sr-only">Open main menu</span>
-                                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="flex lg:order-2 space-x-3 lg:space-x-0 rtl:space-x-reverse">
-                                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
-                                    <span class="sr-only">Open main menu</span>
-                                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                                    </svg>
-                                </button>
                             </div>
                         </li>
                     </ul>
@@ -102,19 +82,19 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
 
     <!-- data -->
     <section>
-        <div class="container mx-auto px-28 p-4">
-            <div class="flex flex-row items-center">
+        <div class="container mx-auto px-8 md:px-28 p-4">
+            <div class="md:flex flex-row items-center">
                 <div class="flex-1">
-                    <label class="font-semibold text-base lg:text-base" for="checkin">checkin</label> <br />
-                    <input type="checkin" class="w-[90%] border border-gray-400 p-2 rounded-lg mr-4" value="<?= date("l, d-m-Y", strtotime($checkin)) ?>">
+                    <label class="font-semibold text-sm lg:text-base" for="checkin">checkin</label> <br />
+                    <input type="checkin" class="w-[90%] text-sm lg:text-base border border-gray-400 p-2 rounded-lg mr-4" value="<?= date("l, d-m-Y", strtotime($checkin)) ?>">
                 </div>
                 <div class="flex-1">
-                    <label class="font-semibold text-base lg:text-base" for="checkout">checkout</label> <br />
-                    <input type="checkout" class="w-[90%] border border-gray-400 p-2 rounded-lg mr-4" value="<?= date("l, d-m-Y", strtotime($checkout)) ?>">
+                    <label class="font-semibold text-sm lg:text-base" for="checkout">checkout</label> <br />
+                    <input type="checkout" class="w-[90%] text-sm lg:text-base border border-gray-400 p-2 rounded-lg mr-4" value="<?= date("l, d-m-Y", strtotime($checkout)) ?>">
                 </div>
                 <div class="flex-1">
-                    <label class="font-semibold text-base lg:text-base" for="jumlah tamu">Jumlah Tamu</label> <br />
-                    <input type="number" class="w-[90%] border border-gray-400 p-2 rounded-lg mr-4" value="<?= $jmlh ?>">
+                    <label class="font-semibold text-sm lg:text-base" for="jumlah tamu">Jumlah Tamu</label> <br />
+                    <input type="number" class="w-[90%] text-sm lg:text-base border border-gray-400 p-2 rounded-lg mr-4" value="<?= $jmlh ?>">
                 </div>
             </div>
         </div>
@@ -123,19 +103,19 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
     <!-- Room -->
     <?php while ($rowType = mysqli_fetch_assoc($typeKamar)) : ?>
         <section>
-            <div class="container mx-auto px-28">
-                <h1 class="text-2xl font-bold mb-2 lg:text-2xl"><?= $rowType['nama_tipe'] ?></h1>
+            <div class="container mx-auto px-8 py-10 md:py-0 md:px-28">
+                <h1 class="text-xl font-bold mb-2 lg:text-2xl"><?= $rowType['nama_tipe'] ?></h1>
                 <hr class="mb-2">
-                <div class="flex flex-row ">
-                    <div class="basis-1/4">
-                        <div class=" pb-28 mb-5 max-w-60 bg-white border border-gray-300 rounded-lg shadow ">
+                <div class="md:flex flex-row ">
+                    <div class="basis-1/4 ">
+                        <div class="pb-10 md:pb-28 mb-5 max-w-60 bg-white border border-gray-300 rounded-lg shadow ">
                             <a href="#">
                                 <img class="rounded-t-lg w-full" style="max-width: 500px;" src="../assets/images/<?= $rowType['image'] ?>.jpeg" alt="" />
                             </a>
                             <div class="p-4">
-                                <i class="fa-solid fa-user text-gray-800 text-lg lg:text-lg"></i><span class="text-base lg:text-base"> Untuk <?= $rowType['jmlh_tamu'] ?> Orang</span> <br>
-                                <i class="fa-solid fa-door-open text-gray-800 text-lg lg:text-lg"></i><span class="text-base lg:text-base"> <?= $rowType['ukuran'] ?> sqm</span> <br>
-                                <button data-modal-target="<?= $rowType['slug'] ?>" data-modal-toggle="<?= $rowType['slug'] ?>" class="font-medium text-blue-600 hover:underline">Read more</button>
+                                <i class="fa-solid fa-user text-gray-800 text-base lg:text-lg"></i><span class="text-sm lg:text-base"> Untuk <?= $rowType['jmlh_tamu'] ?> Orang</span> <br>
+                                <i class="fa-solid fa-door-open text-gray-800 text-base lg:text-lg"></i><span class="text-sm lg:text-base"> <?= $rowType['ukuran'] ?> sqm</span> <br>
+                                <button data-modal-target="<?= $rowType['slug'] ?>" data-modal-toggle="<?= $rowType['slug'] ?>" class="font-medium text-blue-600 hover:underline">Read more &raquo;</button>
                             </div>
                         </div>
                     </div>
@@ -146,21 +126,21 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
                     <div class="flex-1 ">
                         <div class="mb-5 max-w-full p-6 bg-white border-l-2 border-r-2 border-gray-200 rounded-lg shadow  flex flex-col justify-between">
                             <div class="flex justify-between items-center">
-                                <div>
+                                <div class="w-1/2">
                                     <a href="#">
                                         <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900 ">Room</h5>
                                     </a>
-                                    <i class="fa-solid fa-check text-gray-800 text-lg lg:text-lg"></i><span class="text-base lg:text-base"> Tidak Dapat Dikembalikan</span>
-                                    <i class="fa-solid fa-check text-gray-800 text-lg lg:text-lg"></i><span class="text-base lg:text-base"> Tidak Dapat Dijadwal Ulang</span> <br>
-                                    <i class="fa-solid fa-check text-gray-800 text-lg lg:text-lg"></i><span class="text-base lg:text-base text-yellow-500"> Termasuk Sarapan (jika memilih fasilitas tambahan sarapan)</span> <br><br>
+                                    <i class="fa-solid fa-check text-gray-800 text-sm lg:text-lg"></i><span class="text-sm lg:text-base"> Tidak Dapat Dikembalikan</span>
+                                    <i class="fa-solid fa-check text-gray-800 text-sm lg:text-lg"></i><span class="text-sm lg:text-base"> Tidak Dapat Dijadwal Ulang</span> <br>
+                                    <i class="fa-solid fa-check text-gray-800 text-sm lg:text-lg"></i><span class="text-sm lg:text-base text-yellow-500"> Termasuk Sarapan (jika memilih fasilitas tambahan sarapan)</span> <br><br>
 
-                                    <span class="text-xl lg:text-xl font-medium">Pembayaran</span><br>
-                                    <i class="fa-solid fa-check text-gray-800 text-lg lg:text-lg"></i><span class="text-base lg:text-base"> Bayar Sekarang</span>
-                                    <i class="fa-solid fa-check text-gray-800 text-lg lg:text-lg"></i><span class="text-base lg:text-base"> Bayar Nanti</span> <br>
+                                    <span class="text-lg lg:text-xl font-bold">Pembayaran</span><br>
+                                    <i class="fa-solid fa-check text-gray-800 text-sm lg:text-lg"></i><span class="text-sm lg:text-base"> Bayar Sekarang</span>
+                                    <i class="fa-solid fa-check text-gray-800 text-sm lg:text-lg"></i><span class="text-sm lg:text-base"> Bayar Nanti</span> <br>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-sm lg:text-sm"> *Harga Untuk Satu Malam</span> <br>
-                                    <span class="text-2xl lg:text-2xl font-semibold"> RP <?= number_format($rowType['harga'], 0, ',', '.') ?></span> <br>
+                                    <span class="text-xs lg:text-sm"> *Harga Untuk Satu Malam</span> <br>
+                                    <span class="text-xl lg:text-2xl font-semibold"> RP <?= number_format($rowType['harga'], 0, ',', '.') ?></span> <br>
                                     <span class="text-xs lg:text-xs"> sudah termasuk pajak</span><br>
 
                                     <button data-modal-target="<?= "konfirmasi-" . $rowType['slug'] ?>" data-modal-toggle="<?= "konfirmasi-" . $rowType['slug'] ?>" class="mt-10 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -210,43 +190,13 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
     <!-- js -->
-    <script src="src/js/script.js"></script>
+    <script src="../src/js/script.js"></script>
 
-    <script>
-        // Saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            // Ambil semua formulir
-            var forms = document.querySelectorAll('form');
+    <script src="../src/js/localStorage.js"></script>
 
-            // Loop melalui setiap formulir
-            forms.forEach(function(form) {
-                // Saat formulir disubmit
-                form.addEventListener('submit', function(event) {
-                    // Ambil data dari formulir
-                    var formData = new FormData(form);
 
-                    // Data yang akan disimpan dalam local storage
-                    var data = JSON.parse(localStorage.getItem('keranjang_' + form.id)) || [];
-                    var currentData = {};
-                    formData.forEach(function(value, key) {
-                        currentData[key] = value;
-                    });
 
-                    // Tambahkan data formulir saat ini ke dalam array data
-                    data.push(currentData);
 
-                    // Simpan data ke dalam local storage
-                    localStorage.setItem('keranjang_' + form.id, JSON.stringify(data));
-
-                    // Beri tahu pengguna bahwa data telah ditambahkan ke keranjang
-                    alert('Data berhasil ditambahkan ke keranjang');
-
-                    // Berhenti dari mengirimkan formulir
-                    event.preventDefault();
-                });
-            });
-        });
-    </script>
 
 </body>
 

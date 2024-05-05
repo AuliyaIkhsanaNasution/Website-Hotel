@@ -3,7 +3,7 @@
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow ">
             <!-- Modal header -->
-            <div class="flex items-center justify-between p-2 md:p-5 border-b rounded-t ">
+            <div class="flex items-center justify-between p-3 md:p-5 border-b rounded-t ">
                 <h3 class="text-xl font-bold text-gray-900 ">
                     <?= $rowType['nama_tipe'] ?>
                 </h3>
@@ -15,31 +15,31 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class=" pb-4 relative bg-white rounded-lg shadow overflow-hidden flex md:flex-row flex-col">
-                <img class="p-2 pl-5 object-cover w-full md:w-96 h-96 md:h-auto rounded-full md:rounded-lg md:rounded-l-lg" src="../assets/images/<?= $rowType['image'] ?>.jpeg" alt="">
+            <div class=" pb-4 p-3 relative bg-white rounded-lg shadow overflow-hidden flex md:flex-row flex-col">
+                <img class="p-2 pl-5 object-cover w-full md:w-96 h-96 md:h-auto rounded-full md:rounded-xl md:rounded-l-xl" src="../assets/images/<?= $rowType['image'] ?>.jpeg" alt="">
                 <div class="flex flex-col justify-between md:w-1/2">
-                    <h6 class="text-medium font-semibold tracking-tight text-gray-900 ">Deskripsi Ruangan</h6>
-                    <p class="text-lg lg:text-base"><?= $rowType['deskripsi'] ?>.</p>
-                    <h6 class="mt-2 text-medium font-semibold tracking-tight text-gray-900 ">Fasilitas Kamar</h6>
+                    <h6 class="text-base md:text-medium font-semibold tracking-tight text-gray-900 ">Deskripsi Ruangan</h6>
+                    <p class="text-base lg:text-lg"><?= $rowType['deskripsi'] ?>.</p>
+                    <h6 class="mt-2 text-base md:text-medium font-semibold tracking-tight text-gray-900 ">Fasilitas Kamar</h6>
 
                     <div class="flex flex-row">
                         <div class="basis-1/2">
-                            <i class="fa-solid fa-wind text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base">Air Conditioning</span><br>
-                            <i class="fa-solid fa-soap text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base">Body Soap</span><br>
-                            <i class="fa-solid fa-hotjar text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base"> Hot & Cold Shower</span><br>
-                            <i class="fa-solid fa-tv text-gray-800 text-sm lg:text-sm"></i><span class="ml-2 text-base lg:text-base">LCD Flat Panel TV</span><br>
-                            <i class="fa-solid fa-jug-detergent text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base"> Shampoo</span><br>
-                            <i class="fa-solid fa-shoe-prints text-gray-800 text-sm lg:text-sm"></i><span class="ml-2 text-base lg:text-base">Slippers</span><br>
-                            <i class="fa-solid fa-mug-saucer text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base">coffe maker</span><br>
+                            <i class="fa-solid fa-wind text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">Air Conditioning</span><br>
+                            <i class="fa-solid fa-soap text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">Body Soap</span><br>
+                            <i class="fa-solid fa-hotjar text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base"> Hot & Cold Shower</span><br>
+                            <i class="fa-solid fa-tv text-gray-800 text-sm lg:text-sm"></i><span class="ml-2 text-sm lg:text-base">LCD Flat Panel TV</span><br>
+                            <i class="fa-solid fa-jug-detergent text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base"> Shampoo</span><br>
+                            <i class="fa-solid fa-shoe-prints text-gray-800 text-sm lg:text-sm"></i><span class="ml-2 text-sm lg:text-base">Slippers</span><br>
+                            <i class="fa-solid fa-mug-saucer text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">coffe maker</span><br>
                         </div>
                         <div class="basis-1/2">
-                            <i class="fa-solid fa-mattress-pillow text-gray-800 text-xs lg:text-sm"></i><span class="ml-2 text-base lg:text-base">Bath Towel</span><br>
-                            <i class="fa-solid fa-plug text-gray-800 text-xl lg:text-lg"></i><span class="ml-2 text-base lg:text-base">Cable TV</span><br>
-                            <i class="fa-solid fa-phone text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base">IDD Telephone</span><br>
-                            <i class="fa-solid fa-ban-smoking text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base">Non-Smoking</span><br>
-                            <i class="fa-solid fa-shower text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base">Shower</span><br>
-                            <i class="fa-solid fa-pump-soap text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base">Soap</span><br>
-                            <i class="fa-solid fa-tooth text-gray-800 text-lg lg:text-lg"></i><span class="ml-2 text-base lg:text-base">Toothbrush and/or Toot...</span><br>
+                            <i class="fa-solid fa-mattress-pillow text-gray-800 text-xs lg:text-sm"></i><span class="ml-2 text-sm lg:text-base">Bath Towel</span><br>
+                            <i class="fa-solid fa-plug text-gray-800 text-xl lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">Cable TV</span><br>
+                            <i class="fa-solid fa-phone text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">IDD Telephone</span><br>
+                            <i class="fa-solid fa-ban-smoking text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">Non-Smoking</span><br>
+                            <i class="fa-solid fa-shower text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">Shower</span><br>
+                            <i class="fa-solid fa-pump-soap text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">Soap</span><br>
+                            <i class="fa-solid fa-tooth text-gray-800 text-sm lg:text-lg"></i><span class="ml-2 text-sm lg:text-base">Toothbrush and/or Toot...</span><br>
                         </div>
                     </div>
 
