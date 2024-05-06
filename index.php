@@ -186,7 +186,7 @@ if(isset($_GET['error'])) {
         </div>
         <!-- Kamar tiga -->
         <div class="img-container relative overflow-hidden cursor-pointer w-full lg:w-1/3">
-          <img src="assets/images/family2.png" alt="image not found" loading="lazy" class="w-full rounded-md shadow-lg brightness-75" />
+          <img src="assets/images/family2.jpeg" alt="image not found" loading="lazy" class="w-full rounded-md shadow-lg brightness-75" />
           <div class="absolute left-0 w-full h-full bg-slate-600 bg-opacity-50 rounded-lg flex flex-col items-center justify-center p-3 lg:p-5" id="ket-1">
             <h1 class="text-2xl font-bold mb-3 text-white">Family Room</h1>
             <p class="text-xs font-light text-white">Kamar yang dirancang khusus untuk tamu yang bepergian bersama keluarga, dengan ruang yang lebih luas dan fasilitas yang sesuai untuk kenyamanan bersama.</p>
