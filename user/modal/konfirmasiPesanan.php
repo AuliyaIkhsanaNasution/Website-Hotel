@@ -20,6 +20,8 @@
                  <div class="grid grid-cols-2 gap-4 mb-4">
                      <input type="hidden" name="checkin" id="checkin" value="<?= $checkin ?>">
                      <input type="hidden" name="checkout" id="checkout" value="<?= $checkout ?>">
+                     <input type="hidden" name="harga" id="harga" value="<?= $rowType['harga'] ?>">
+                     <input type="hidden" name="image" id="image" value="<?= $rowType['image'] ?>">
                      <input type="hidden" name="idType" id="idType" value="<?= $rowType['tipe_kamar_id'] ?>">
 
                      <div class="col-span-2">
@@ -43,6 +45,17 @@
                                  <option value="<?= $rowKamar['kamar_id'] ?>"><?= $rowKamar['kamar_id'] ?></option>
                              <?php endwhile; ?>
                          </select>
+                     </div>
+                     <div class="col-span-2">
+                         <label for="fasilitas" class="block mb-2 text-sm font-medium text-gray-900 ">fasilitas Tambahan</label>
+                         <select name="fasilitas" id="fasilitas" class="kamar-dropdown bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " required="">
+                             <option value="Tanpa Sarapan">Tanpa Sarapan</option>
+                             <option value="Sarapan">Sarapan</option>
+                         </select>
+                     </div>
+                     <div class="col-span-2">
+                         <label for="total" class="block mb-2 text-sm font-medium text-gray-900 ">Total Harga</label>
+                         <input type="number" name="total" id="total" data-harga-awal="<?= $rowType['harga'] ?>" value="<?= $rowType['harga'] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " readonly>
                      </div>
                  </div>
                  <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
