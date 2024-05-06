@@ -6,7 +6,7 @@
     <title>Keranjang</title>
 
     <!-- tailwind -->
-    <link href="./src/output.css" rel="stylesheet" />
+    <link href="../src/output.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- flowbite -->
