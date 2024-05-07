@@ -1,3 +1,11 @@
+<?php 
+require "function/koneksi.php";
+
+// read
+$query = "SELECT * FROM user";
+$hasil = $conn->query($query);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -172,6 +180,31 @@
       <a href="function/tambahdatacustomer.php" class="block ms-8 mt-3 py-3 px-6 rounded-lg bg-yellow-400 text-gray-800 hover:bg-slate-200 hover:scale-110 font-bold ">Tambah Data customer</a>
     </div>
 
+
+    <!-- alert -->
+    <?php
+                if (isset($_GET['tambah'])) : ?>
+                  <script>
+                    Swal.fire("Data Pelanggan Berhasil Ditambahkan");
+                  </script>
+                <?php endif; ?>
+
+                <?php
+                if (isset($_GET['ubah'])) : ?>
+                  <script>
+                    Swal.fire("Data Pelanggan Berhasil Diupdate");
+                  </script>
+                <?php endif; ?>
+
+                <?php
+                if (isset($_GET['hapus'])) : ?>
+                  <script>
+                    Swal.fire("Data Pelanggan Berhasil Dihapus");
+                  </script>
+                <?php endif; ?>
+                <!-- akhir alert -->
+                
+
     <!-- table 1 -->
 
     <div class="flex flex-wrap -mx-3 ms-5 mt-4 me-4">
@@ -195,25 +228,34 @@
                   </tr>
                 </thead>
                 <tbody class="align-center">
+                <?php 
+
+              $num = 1;
+              while ($user = $hasil->fetch_assoc()) {
+          ?>
 
                     <tr>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%]">1
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%]"><?= $num ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $user['user_id'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $user['email'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $user['nama'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $user['alamat'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $user['no_telepon'] ?>
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
                         <a href="function/editcustomer.php?id="><i class="material-icons">edit</i></a>
                         <a href="function/deletecustomer.php?id=" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
                       </td>
                     </tr>
+
+                    <?php $num++;
+                  }
+                  ?>
                 </tbody>
               </table>
             </div>

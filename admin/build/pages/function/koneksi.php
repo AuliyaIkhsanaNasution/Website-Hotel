@@ -18,8 +18,8 @@ function query($query)
     $data = mysqli_query($conn, $query);
 
     // fetch
-    while ($apotek = mysqli_fetch_array($data)) {
-        $rows[] = $apotek;
+    while ($hotel = mysqli_fetch_array($data)) {
+        $rows[] = $hotel;
     }
 
     return $rows;
