@@ -23,25 +23,25 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="m-0 font-sans text-base antialiased font-normal dark:bg-slate-900 leading-default bg-gray-50 text-slate-500">
-  <div class="absolute w-full bg-blue-700 dark:hidden min-h-75"></div>
+<body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-100 text-slate-500">
+  <div class="absolute w-full bg-blue-700 min-h-75 "></div>
   <!-- sidenav  -->
-  <aside class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl dark:shadow-none dark:bg-slate-850 max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0" aria-expanded="false">
+  <aside class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl  max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0" aria-expanded="false">
     <div class="h-19">
-      <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times dark:text-white text-slate-400 xl:hidden" sidenav-close></i>
-      <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700" href="dashboard.php" target="_blank">
-        <img src="../assets/img/logo.png" class="inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8 rounded-full" alt="main_logo" />
-        <img src="" class="hidden h-full max-w-full transition-all duration-200 dark:inline ease-nav-brand max-h-8 " alt="main_logo" />
+      <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden" sidenav-close></i>
+      <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="dashboard.php" target="_blank">
+        <img src="../assets/img/logo.png" class="inline h-full max-w-full transition-all duration-200  ease-nav-brand max-h-8 rounded-full" alt="main_logo" />
+        <img src="" class="hidden h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8 " alt="main_logo" />
         <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Nuansa Nusantara</span>
       </a>
     </div>
 
-    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent dark:bg-gradient-to-r dark:from-transparent dark:via-white dark:to-transparent" />
+    <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent " />
 
     <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
       <ul class="flex flex-col pl-0 mb-0">
         <li class="mt-0.5 w-full">
-          <a class="py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors" href="dashboard.php">
+          <a class="py-2.7 bg-blue-500/13  text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors" href="dashboard.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-blue-500 ni ni-tv-2"></i>
             </div>
@@ -50,7 +50,7 @@
         </li>
 
         <li class="mt-0.5 w-full">
-          <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datacustomer.php">
+          <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datacustomer.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
             </div>
@@ -59,7 +59,7 @@
         </li>
 
         <li class="mt-0.5 w-full">
-          <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapegawai.php">
+          <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapegawai.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
             </div>
@@ -68,7 +68,7 @@
         </li>
 
         <li class="mt-0.5 w-full">
-          <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datakamar.php">
+          <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datakamar.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
             </div>
@@ -77,7 +77,7 @@
         </li>
 
         <li class="mt-0.5 w-full">
-          <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datatipekamar.php">
+          <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datatipekamar.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
             </div>
@@ -87,7 +87,7 @@
 
 
         <li class="mt-0.5 w-full">
-          <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapemesanan.php">
+          <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapemesanan.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i>
             </div>
@@ -101,13 +101,13 @@
 
     <div class="mx-4 ">
       <!-- load phantom colors for card after: -->
-      <!-- <p class="invisible hidden text-gray-800 text-red-500 text-red-600 text-blue-500 dark:bg-white bg-slate-500 bg-gray-500/30 bg-cyan-500/30 bg-emerald-500/30 bg-orange-500/30 bg-red-500/30 after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850 after:from-blue-700 after:to-cyan-500 after:from-orange-500 after:to-yellow-500 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-orange-600 after:from-slate-600 after:to-slate-300 text-emerald-500 text-cyan-500 text-slate-400"></p> -->
+      <!-- <p class="invisible hidden text-gray-800 text-red-500 text-red-600 text-blue-500 blue-700 after:to-cyan-500 after:from-orange-500 after:to-yellow-500 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-orange-600 after:from-slate-600 after:to-slate-300 text-emerald-500 text-cyan-500 text-slate-400"></p> -->
       <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border" sidenav-card>
         <img class="w-1/3 mx-auto rounded-10" src="../assets/img/logo.png" alt="sidebar illustrations" />
         <div class="flex-auto w-full p-4 pt-0 text-center">
           <div class="transition-all duration-200 ease-nav-brand">
-            <h6 class="mb-0 dark:text-white text-slate-700">Nuansa Nusantara</h6>
-            <p class="mb-0 text-xs font-semibold leading-tight dark:text-white dark:opacity-60">Kamar nyaman Kualitas Tinggi</p>
+            <h6 class="mb-0 text-slate-700">Nuansa Nusantara</h6>
+            <p class="mb-0 text-xs font-semibold leading-tight ">Kamar nyaman Kualitas Tinggi</p>
           </div>
         </div>
       </div>
@@ -157,14 +157,14 @@
       <div class="flex flex-wrap -mx-3">
         <!-- card1 -->
           <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl  rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans  text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60">Kamar Hotel</p>
-                      <h5 class="mb-2 dark:text-white">*total kamar</h5>
-                      <p class="mb-0 dark:text-white dark:opacity-60">
+                      <p class="mb-0 font-sans  text-lg font-semibold leading-normal uppercase ">Kamar Hotel</p>
+                      <h5 class="mb-2 ">*total kamar</h5>
+                      <p class="mb-0 ">
                         <span class=" text-lg font-bold leading-normal text-emerald-500">50</span>
                         kamar
                       </p>
@@ -183,14 +183,14 @@
         <!-- card2 -->
 
           <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl  rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-6 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60"> Pelanggan</p>
-                      <h5 class="mb-1 dark:text-white">___________</h5>
-                      <p class="mb-0 dark:text-white dark:opacity-60">
+                      <p class="mb-6 font-sans text-lg font-semibold leading-normal uppercase "> Pelanggan</p>
+                      <h5 class="mb-1 ">___________</h5>
+                      <p class="mb-0 ">
                         <span class="mt-1 inline-block text-lg font-bold leading-normal text-emerald-500">30</span>
                         Orang
                       </p>
@@ -208,14 +208,14 @@
 
         <!-- card3 -->
           <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl  rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">Total Uang Masuk</p>
-                      <h5 class="mb-3 font-bold dark:text-white text-teal-600"></h5>
-                      <p class="mb-0 dark:text-white dark:opacity-60">
+                      <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase ">Total Uang Masuk</p>
+                      <h5 class="mb-3 font-bold text-teal-600"></h5>
+                      <p class="mb-0 ">
                         <span class="mt-6 inline-block text-lg font-bold leading-normal text-teal-500">Rp.670.000</span>
                       </p>
                     </div>
@@ -232,14 +232,14 @@
 
         <!-- card4 -->
           <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
-            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
+            <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl  rounded-2xl bg-clip-border">
               <div class="flex-auto p-4">
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase dark:text-white dark:opacity-60">Total Pegawai</p>
-                      <h5 class="mb-3 font-bold dark:text-white text-yellow-600"></h5>
-                      <p class="mb-0 dark:text-white dark:opacity-60">
+                      <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase ">Total Pegawai</p>
+                      <h5 class="mb-3 font-bold text-yellow-600"></h5>
+                      <p class="mb-0 ">
                         <span class="mt-10 inline-block text-lg font-bold leading-normal text-yellow-500">30 orang</span>
                       </p>
                     </div>
@@ -259,9 +259,9 @@
     <!-- cards row 2 -->
     <div class="flex flex-wrap mt-6 -mx-3">
       <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
-        <div class="border-black/12.5 dark:bg-slate-850 dark:shadow-dark-xl shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+        <div class="border-black/12.5  shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
           <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid p-6 pt-4 pb-0">
-            <h6 class="capitalize font-semibold dark:text-white">Nuansa Nusantara</h6>
+            <h6 class="capitalize font-semibold ">Nuansa Nusantara</h6>
             "Kamar Ternyaman ada di kami"
           </div>
           <div class="flex-auto p-4">
@@ -283,7 +283,7 @@
                 <i class="top-0.75 text-xxs relative text-slate-700 ni ni-camera-compact"></i>
               </div>
               <h5 class="mb-1 text-white">Nuansa Nusantara</h5>
-              <p class="dark:opacity-80">Nuansa Nusantara adalah sebuah hotel yang bertemakan nusantara, bertujuan untuk memberikan pelayanan kamar yang terjangkau, berkualitas, dan terpercaya kepada masyarakat.</p>
+              <p class="">Nuansa Nusantara adalah sebuah hotel yang bertemakan nusantara, bertujuan untuk memberikan pelayanan kamar yang terjangkau, berkualitas, dan terpercaya kepada masyarakat.</p>
             </div>
           </div>
 
@@ -295,7 +295,7 @@
                 <i class="top-0.75 text-xxs relative text-slate-700 ni ni-bulb-61"></i>
               </div>
               <h5 class="mb-1 text-white">Komitmen Nuansa Nusantara</h5>
-              <p class="dark:opacity-80">melayani customer dengan sepenuh hati juga diwujudkan dalam 5 Jaminan Pasti yang selalu dipegang teguh oleh Nuansa Nusantara</p>
+              <p class="">melayani customer dengan sepenuh hati juga diwujudkan dalam 5 Jaminan Pasti yang selalu dipegang teguh oleh Nuansa Nusantara</p>
             </div>
           </div>
 
@@ -319,7 +319,7 @@
                 document.write(new Date().getFullYear() + ",");
               </script>
               made with <i class="fa fa-heart"></i> by
-              <span class="font-semibold text-slate-700 dark:text-white">Auliya Ikhsana Nasution</span>
+              <span class="font-semibold text-slate-700 ">Auliya Ikhsana Nasution</span>
 
             </div>
           </div>
