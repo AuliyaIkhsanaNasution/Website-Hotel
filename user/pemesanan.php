@@ -48,6 +48,16 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
 
 <body class="w-screen overflow-x-hidden bg-slate-100">
 
+    <?php
+    if (isset($_GET['success'])) {
+        echo '
+        <script>
+        alert("Data pemesanan berhasil ditambahkan");
+        </script>
+        ';
+    }
+    ?>
+
     <!-- navbar -->
     <section>
         <nav class="w-screen bg-blue-800 border-gray-200">
@@ -69,7 +79,7 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
 
 
                                 <a href="keranjang.php" class="px-4 py-1 text-sm font-medium text-center text-white bg-yellow-400 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300">
-                                    <i class="px-4 text-lg text-white rounded-full fa-solid fa-basket-shopping "></i>
+                                    <i class="px-4 text-lg text-white rounded-full fa-solid fa-basket-shopping" id="cart"> 0 </i>
                                 </a>
                             </div>
                         </li>
@@ -191,8 +201,8 @@ $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
 
     <!-- js -->
     <script src="../src/js/script.js"></script>
-
     <script src="../src/js/localStorage.js"></script>
+    <script src="../src/js/countItem.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

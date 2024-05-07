@@ -25,11 +25,11 @@
 
   <!-- navbar -->
   <section>
-    <nav class="bg-blue-800 border-gray-200 ">
+    <nav class="w-screen bg-blue-800 border-gray-200">
       <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
         <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
-          <span class="self-center text-2xl font-bold text-yellow-400 whitespace-nowrap">Nuansa Nusantara</span>
+          <span class="self-center text-lg font-bold text-yellow-400 lg:text-2xl whitespace-nowrap">Nuansa Nusantara</span>
         </a>
         <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-default" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
@@ -42,31 +42,10 @@
             <li>
               <div class="flex space-x-3 lg:order-2 lg:space-x-0 rtl:space-x-reverse">
 
-                <form action="keranjang.php" method="get">
-                  <button type="submit" class="px-4 py-1 text-sm font-medium text-center text-white bg-yellow-400 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300">
-                    <i class="px-4 text-lg text-white rounded-full fa-solid fa-basket-shopping "></i>
-                  </button>
-                </form>
 
-
-                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
-
-                  <span class="sr-only">Open main menu</span>
-                  <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                  </svg>
-                </button>
-              </div>
-            </li>
-            <li>
-              <div class="flex space-x-3 lg:order-2 lg:space-x-0 rtl:space-x-reverse">
-                <!-- <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-yellow-400 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300">Join Now</button> -->
-                <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
-                  <span class="sr-only">Open main menu</span>
-                  <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
-                  </svg>
-                </button>
+                <a href="keranjang.php" class="px-4 py-1 text-sm font-medium text-center text-white bg-yellow-400 rounded-lg hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300">
+                  <i class="px-4 text-lg text-white rounded-full fa-solid fa-basket-shopping" id="cart"> 0 </i>
+                </a>
               </div>
             </li>
           </ul>
@@ -99,56 +78,58 @@
       <hr class="mb-2">
       <center>
         <div class="max-w-4xl p-3 mb-5 bg-white border-l-2 border-r-2 border-gray-200 rounded-lg shadow ">
-          <form>
+          <form action="function/pemesanan.php" method="POST">
             <h4 class="text-2xl font-bold lg:text-xl">Data Diri</h4>
             <span class="block mb-3 text-sm lg:text-sm">Isi data diri terlebih dahulu dan lakukan pembayaran pemesanan</span><br>
             <div class="grid gap-6 mb-6 md:grid-cols-2">
 
+              <input type="hidden" id="hiddenInput" name="localData">
+
               <div>
-                <label for="first_name" class="block mb-2 text-sm font-medium text-left text-gray-900 ">Nama Lengkap</label>
+                <label for="nama" class="block mb-2 text-sm font-medium text-left text-gray-900 ">Nama Lengkap</label>
                 <div class="flex">
                   <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300 rounded-e-0 border-e-0 rounded-s-md ">
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                     </svg>
                   </span>
-                  <input type="text" id="website-admin" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="elonmusk" required>
+                  <input type="text" id="nama" name="nama" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="Jhon Doe" required>
                 </div>
               </div>
 
               <div>
-                <label for="first_name" class="block mb-2 text-sm font-medium text-left text-gray-900 ">Email</label>
+                <label for="email" class="block mb-2 text-sm font-medium text-left text-gray-900 ">Email</label>
                 <div class="flex">
                   <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300 rounded-e-0 border-e-0 rounded-s-md ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                     </svg>
                   </span>
-                  <input type="text" id="website-admin" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="nana@gmail.com" required>
+                  <input type="email" id="email" name="email" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="nana@gmail.com" required>
                 </div>
               </div>
 
               <div>
-                <label for="first_name" class="block mb-2 text-sm font-medium text-left text-gray-900 ">Alamat</label>
+                <label for="alamat" class="block mb-2 text-sm font-medium text-left text-gray-900 ">Alamat</label>
                 <div class="flex">
                   <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300 rounded-e-0 border-e-0 rounded-s-md ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
                   </span>
-                  <input type="text" id="website-admin" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="jl.pertahanan" required>
+                  <input type="text" id="alamat" name="alamat" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="jl. XXX" required>
                 </div>
               </div>
 
               <div>
-                <label for="first_name" class="block mb-2 text-sm font-medium text-left text-gray-900 dark:text-white">Nomor Telephon/Whatsapp</label>
+                <label for="kontak" class="block mb-2 text-sm font-medium text-left text-gray-900 dark:text-white">Nomor Telephon/Whatsapp</label>
                 <div class="flex">
                   <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300 rounded-e-0 border-e-0 rounded-s-md ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                     </svg>
                   </span>
-                  <input type="text" id="website-admin" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="085159968152" required>
+                  <input type="text" id="kontak" name="kontak" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="08xxxxxxxx" required>
                 </div>
               </div>
 
@@ -160,7 +141,7 @@
               </div>
               <label for="remember" class="text-sm font-medium text-gray-900 ms-2 ">I agree with the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a>.</label>
             </div>
-            <button type="submit" class="text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 ">Submit</button>
+            <button type="submit" name="submit" class="text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 ">Submit</button>
           </form>
         </div>
       </center>
@@ -241,10 +222,19 @@
 
   <!-- js -->
   <script src="../src/js/script.js"></script>
-
   <script src="../src/js/cart.js"></script>
-
   <script src="../src/js/resetCart.js"></script>
+  <script src="../src/js/countItem.js"></script>
+
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const formData = localStorage.getItem('keranjang_');
+      if (formData) {
+        document.getElementById('hiddenInput').value = formData;
+      }
+    });
+  </script>
 </body>
 
 </html>
