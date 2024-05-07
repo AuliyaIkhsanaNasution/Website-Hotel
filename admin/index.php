@@ -18,7 +18,7 @@
 
 <body class="hidden-x-overflow bg-blue-50">
   <div class="logo absolute top-0 left-0">
-    <img src="build/assets/img/logo.png" alt="logo" class="w-20 bg-blue-500 rounded-br-xl shadow-sm" />
+    <img src="build/assets/img/logo.png" alt="logo" class="w-20 bg-blue-500 rounded-br-xl shadow-md" />
   </div>
 
   <section class="flex flex-wrap justify-evenly content-center lg:pb-5 lg:pt-14">
@@ -43,7 +43,7 @@
 
     </form>
 
-    <div class="w-full mb-10 lg:w-1/2 lg:m-5">
+    <div class="w-full mb-10 lg:w-1/2 lg:m-5 text-center">
       <img src="build/assets/img/hotel.png" alt="mock" class="w-[80%] m-auto " />
       <h3 class="text-gray-800 text-2xl font-bold ms-3 lg:text-4xl lg:font-extrabold">Hotel Nuansa Nusantara ✔</h3>
       <p class="text-base text-yellow-600 font-semibold ms-3 italic tracking-tight lg:text-xl">"Hotel Indah, Dijamin Aman Dan Berkualitas"</p>
