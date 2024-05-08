@@ -18,7 +18,7 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-    $query = "INSERT INTO user VALUES ('$id_user', '$nama', '$email', '$alamat', '$no_telepon')";
+    $query = "INSERT INTO user VALUES ('$id_user', '$email', '$nama', '$alamat', '$no_telepon')";
 
     if ($conn->query($query) === TRUE) {
         header("location: ../datacustomer.php?tambah=true");
@@ -49,27 +49,27 @@ if (isset($_POST["submit"])) {
         <form action="" method="post" class="space-y-4 ">
             <div>
                 <label for="id_user" class="block text-sm font-medium text-gray-600">ID Customer</label>
-                <input type="text" id="id_user" name="id_user" placeholder="masukkan id_user customer"
+                <input type="text" id="id_user" name="id_user" placeholder="CST-01"
                     class="mt-1 p-2 w-full border rounded-md " required>
             </div>            
             <div>
-                <label for="email" class="block text-sm font-medium text-gray-600">email Customer</label>
-                <textarea id="email" name="email" placeholder="masukkan email customer"
+                <label for="email" class="block text-sm font-medium text-gray-600">Email Customer</label>
+                <textarea id="email" name="email" placeholder="example@gmail.com"
                     class="mt-1 p-2 w-full border rounded-md" required></textarea>
             </div>
             <div>
                 <label for="nama" class="block text-sm font-medium text-gray-600">Nama Customer</label>
-                <input type="text" id="nama" name="nama" placeholder="masukkan nama customer"
+                <input type="text" id="nama" name="nama" placeholder="Andini Lubisr"
                     class="mt-1 p-2 w-full border rounded-md" required>
             </div>
             <div>
                 <label for="alamat" class="block text-sm font-medium text-gray-600">Alamat Customer</label>
-                <textarea id="alamat_customer" name="alamat" placeholder="masukkan alamat customer"
+                <textarea id="alamat_customer" name="alamat" placeholder="JL.Setia Budi"
                     class="mt-1 p-2 w-full border rounded-md" required></textarea>
             </div>
             <div>
                 <label for="no_telepon" class="block text-sm font-medium text-gray-600">No Telephone</label>
-                <input type="text" id="no_teleponr" name="no_telepon" placeholder="masukkan telepon customer"
+                <input type="text" id="no_teleponr" name="no_telepon" placeholder="085159968152r"
                     class="mt-1 p-2 w-full border rounded-md" >
             </div>
             <div>

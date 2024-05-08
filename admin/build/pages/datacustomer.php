@@ -153,7 +153,7 @@ $hasil = $conn->query($query);
               </li> -->
               <li class="flex items-center">
               <a href="profile.php" class="block px-4 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
-                <i class="fa fa-user sm:mr-1"></i>
+                <i class="fa fa-floppy-o sm:mr-1"></i>
                 <span class="hidden sm:inline">Print</span>
               </a>
               <a href="profile.php" class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
@@ -227,17 +227,17 @@ $hasil = $conn->query($query);
                     <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Control</th>
                   </tr>
                 </thead>
-                <tbody class="align-center">
+                <tbody class="align-center ">
                 <?php 
 
               $num = 1;
               while ($user = $hasil->fetch_assoc()) {
           ?>
 
-                    <tr>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%]"><?= $num ?>
+                    <center><tr>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%] "><?= $num ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $user['user_id'] ?>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $user['user_id'] ?>
                       </td>
                       <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $user['email'] ?>
                       </td>
@@ -251,7 +251,7 @@ $hasil = $conn->query($query);
                         <a href="function/editcustomer.php?id="><i class="material-icons">edit</i></a>
                         <a href="function/deletecustomer.php?id=" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
                       </td>
-                    </tr>
+                    </tr></center>
 
                     <?php $num++;
                   }
