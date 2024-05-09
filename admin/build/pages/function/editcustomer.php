@@ -46,13 +46,13 @@ if (isset($_POST["ubah"])) {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 </head>
 
-<body class="bg-green-200 p-6">
+<body class="bg-blue-200 p-6">
 
 
 
         <?php while ($cst = $hasil->fetch_assoc()) { ?> 
 
-        <div class="max-w-xl mx-auto  rounded p-8 shadow-md outline outline-2  outline-offset-2 outline-green-500 bg-slate-200">
+        <div class="max-w-xl mx-auto  rounded p-8 shadow-md outline outline-2  outline-offset-2 outline-yellow-500 bg-yellow-100">
             <h2 class="text-2xl font-bold mb-8 text-slate-600 text-center ">Edit Data Customer</h2>
             <form action="" method="post" class="space-y-4 ">
 
@@ -81,7 +81,7 @@ if (isset($_POST["ubah"])) {
                 <input type="text" id="no_teleponr" name="no_telepon" class="mt-1 p-2 w-full border rounded-md" value="<?php echo $cst['no_telepon']; ?>" required>
             </div>
                 <div>
-                    <button type="submit" name="ubah" class="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-700">Simpan</button>
+                    <button type="submit" name="ubah" class="w-full bg-blue-700 text-white p-2 rounded-md hover:bg-blue-300">Simpan</button>
                 </div>
             </form>
         </div>

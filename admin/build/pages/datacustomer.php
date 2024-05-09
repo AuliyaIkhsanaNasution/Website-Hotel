@@ -249,7 +249,7 @@ $hasil = $conn->query($query);
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
                         <a href="function/editcustomer.php?id=<?= $user['user_id'] ?>"><i class="material-icons">edit</i></a>
-                        <a href="function/deletecustomer.php?id=" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
+                        <a href="function/hapuscostumer.php?id=<?= $user['user_id'] ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
                       </td>
                     </tr></center>
 

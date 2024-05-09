@@ -42,7 +42,7 @@ if (isset($_POST["submit"])) {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 </head>
 
-<body class="bg-blue-100  p-6">
+<body class="bg-blue-200  p-6">
     <div class="max-w-xl mx-auto  rounded p-8 shadow-md outline outline-2  outline-offset-2 outline-yellow-500 bg-yellow-100">
         <h2 class="text-2xl font-bold mb-3 text-slate-600 text-center ">Tambah Data Customer</h2>
         <h6 class="text-sm  mb-5 text-slate-500 ">*harap isi data Customer sesuai data yang ada</h6>

@@ -1,3 +1,12 @@
+<?php 
+require "function/koneksi.php";
+
+$query = "SELECT pegawai.pegawai_id, pegawai.email, pegawai.nama, pegawai.alamat, pegawai.no_telepon, posisi.posisi AS    nama_posisi
+          FROM pegawai
+          INNER JOIN posisi ON pegawai.posisi_id = posisi.posisi_id";
+$result = $conn->query($query);
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -145,7 +154,7 @@
               </li> -->
               <li class="flex items-center">
               <a href="profile.php" class="block px-4 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
-                <i class="fa fa-user sm:mr-1"></i>
+                <i class="fa fa-floppy-o sm:mr-1"></i>
                 <span class="hidden sm:inline">Print</span>
               </a>
               <a href="profile.php" class="block px-0 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
@@ -172,6 +181,29 @@
       <a href="function/tambahdatapegawai.php" class="block ms-8 mt- py-3 px-6 rounded-lg bg-yellow-400 text-gray-800 hover:bg-slate-200 hover:scale-110 font-bold ">Tambah Data Pegawai</a>
     </div>
 
+    <!-- alert -->
+    <?php
+                if (isset($_GET['tambah'])) : ?>
+                  <script>
+                    Swal.fire("Data Customer Berhasil Ditambahkan");
+                  </script>
+                <?php endif; ?>
+
+                <?php
+                if (isset($_GET['ubah'])) : ?>
+                  <script>
+                    Swal.fire("Data Customer Berhasil Diupdate");
+                  </script>
+                <?php endif; ?>
+
+                <?php
+                if (isset($_GET['hapus'])) : ?>
+                  <script>
+                    Swal.fire("Data Customer Berhasil Dihapus");
+                  </script>
+                <?php endif; ?>
+                <!-- akhir alert -->
+
     <!-- table 1 -->
 
     <div class="flex flex-wrap -mx-3 ms-5 mt-4 me-4">
@@ -197,26 +229,36 @@
                 </thead>
                 <tbody class="align-center">
 
+                <?php 
+
+                  $num = 1;
+                  while ($pegawai = $result->fetch_assoc()) {
+                  ?>
+
                     <tr>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%]">1
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%]"><?= $num ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['pegawai_id'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['email'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['nama'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['alamat'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['no_telepon'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['nama_posisi'] ?>
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
                         <a href="function/editcustomer.php?id="><i class="material-icons">edit</i></a>
                         <a href="function/deletecustomer.php?id=" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
                       </td>
                     </tr>
+                    <?php $num++;
+                  }
+                  ?>
+
                 </tbody>
               </table>
             </div>
