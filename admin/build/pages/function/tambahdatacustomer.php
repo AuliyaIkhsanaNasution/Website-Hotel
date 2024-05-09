@@ -3,22 +3,22 @@ require "koneksi.php";
 
 // memanggil apabila tombol submit di klik
 if (isset($_POST["submit"])) {
-    $id_user = htmlspecialchars($_POST["id_user"]);
-    $nama = htmlspecialchars($_POST["nama"]);
+    $user_id = htmlspecialchars($_POST["user_id"]);
     $email = htmlspecialchars($_POST["email"]);
+    $nama = htmlspecialchars($_POST["nama"]);
     $alamat = htmlspecialchars($_POST["alamat"]);
     $no_telepon = htmlspecialchars($_POST["no_telepon"]);
 
 
     // pengecekan username apakah ada di database
-    $result = mysqli_query($conn, "SELECT user_id FROM user WHERE user_id='$id_user'");
+    $result = mysqli_query($conn, "SELECT user_id FROM user WHERE user_id='$user_id'");
 
     if (mysqli_fetch_assoc($result)) {
         header("location: ?gagal=true");
         exit;
     }
 
-    $query = "INSERT INTO user VALUES ('$id_user', '$email', '$nama', '$alamat', '$no_telepon')";
+    $query = "INSERT INTO user VALUES ($user_id, '$email', '$nama', '$alamat', '$no_telepon')";
 
     if ($conn->query($query) === TRUE) {
         header("location: ../datacustomer.php?tambah=true");
@@ -48,8 +48,8 @@ if (isset($_POST["submit"])) {
         <h6 class="text-sm  mb-5 text-slate-500 ">*harap isi data Customer sesuai data yang ada</h6>
         <form action="" method="post" class="space-y-4 ">
             <div>
-                <label for="id_user" class="block text-sm font-medium text-gray-600">ID Customer</label>
-                <input type="text" id="id_user" name="id_user" placeholder="CST-01"
+                <label for="user_id" class="block text-sm font-medium text-gray-600">No KTP Customer</label>
+                <input type="text" id="user_id" name="user_id" placeholder="876564325689754"
                     class="mt-1 p-2 w-full border rounded-md " required>
             </div>            
             <div>
@@ -69,7 +69,7 @@ if (isset($_POST["submit"])) {
             </div>
             <div>
                 <label for="no_telepon" class="block text-sm font-medium text-gray-600">No Telephone</label>
-                <input type="text" id="no_teleponr" name="no_telepon" placeholder="085159968152r"
+                <input type="text" id="no_teleponr" name="no_telepon" placeholder="085159968152"
                     class="mt-1 p-2 w-full border rounded-md" >
             </div>
             <div>

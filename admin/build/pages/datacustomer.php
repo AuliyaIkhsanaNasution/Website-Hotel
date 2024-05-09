@@ -185,21 +185,21 @@ $hasil = $conn->query($query);
     <?php
                 if (isset($_GET['tambah'])) : ?>
                   <script>
-                    Swal.fire("Data Pelanggan Berhasil Ditambahkan");
+                    Swal.fire("Data Customer Berhasil Ditambahkan");
                   </script>
                 <?php endif; ?>
 
                 <?php
                 if (isset($_GET['ubah'])) : ?>
                   <script>
-                    Swal.fire("Data Pelanggan Berhasil Diupdate");
+                    Swal.fire("Data Customer Berhasil Diupdate");
                   </script>
                 <?php endif; ?>
 
                 <?php
                 if (isset($_GET['hapus'])) : ?>
                   <script>
-                    Swal.fire("Data Pelanggan Berhasil Dihapus");
+                    Swal.fire("Data Customer Berhasil Dihapus");
                   </script>
                 <?php endif; ?>
                 <!-- akhir alert -->
@@ -219,7 +219,7 @@ $hasil = $conn->query($query);
                 <thead class="align-bottom">
                   <tr>
                     <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b  #FFFFFFborder-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">No</th>
-                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">ID customer</th>
+                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">No KTP Customer</th>
                     <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Email</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nama Customer</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Alamat</th>
@@ -248,7 +248,7 @@ $hasil = $conn->query($query);
                       <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $user['no_telepon'] ?>
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
-                        <a href="function/editcustomer.php?id="><i class="material-icons">edit</i></a>
+                        <a href="function/editcustomer.php?id=<?= $user['user_id'] ?>"><i class="material-icons">edit</i></a>
                         <a href="function/deletecustomer.php?id=" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
                       </td>
                     </tr></center>
