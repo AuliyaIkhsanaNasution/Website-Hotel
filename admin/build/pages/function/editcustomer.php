@@ -10,7 +10,7 @@ $hasil = $conn->query($sql);
 
 // memanggil apabila tombol submit di klik
 if (isset($_POST["ubah"])) {
-    $user_id = htmlspecialchars($_POST["user_id"]);
+    $nik = htmlspecialchars($_POST["nik"]);
     $email = htmlspecialchars($_POST["email"]);
     $nama = htmlspecialchars($_POST["nama"]);
     $alamat = htmlspecialchars($_POST["alamat"]);
@@ -18,6 +18,7 @@ if (isset($_POST["ubah"])) {
 
 
     $query = "UPDATE user SET
+        nik = '$nik',
         email = '$email',
         nama = '$nama',   
         alamat = '$alamat',
@@ -57,8 +58,8 @@ if (isset($_POST["ubah"])) {
             <form action="" method="post" class="space-y-4 ">
 
                 <div>
-                    <label for="user_id" class="block text-sm font-medium text-gray-600">NIK Customer</label>
-                    <input type="text" id="user_id" name="user_id" class="mt-1 p-2 w-full border rounded-md "  value="<?php echo $cst['user_id']; ?>" readonly>
+                    <label for="nik" class="block text-sm font-medium text-gray-600">NIK Customer</label>
+                    <input type="text" id="nik" name="nik" class="mt-1 p-2 w-full border rounded-md "  value="<?php echo $cst['nik']; ?>">
                 </div>
                
             <div>

@@ -41,6 +41,8 @@
         Login
       </button>
 
+      <p class="mt-6 text-lg text-gray-600">Bukan Pegawai? <a href="../index.php" class="text-blue-700 no-underline hover:underline">Klik kembali</a></p>
+
     </form>
 
     <div class="w-full mb-10 lg:w-1/2 lg:m-5 text-center">

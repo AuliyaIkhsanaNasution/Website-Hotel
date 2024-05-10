@@ -185,21 +185,21 @@ $result = $conn->query($query);
     <?php
                 if (isset($_GET['tambah'])) : ?>
                   <script>
-                    Swal.fire("Data Customer Berhasil Ditambahkan");
+                    Swal.fire("Data Pegawai Berhasil Ditambahkan");
                   </script>
                 <?php endif; ?>
 
                 <?php
                 if (isset($_GET['ubah'])) : ?>
                   <script>
-                    Swal.fire("Data Customer Berhasil Diupdate");
+                    Swal.fire("Data Pegawai Berhasil Diupdate");
                   </script>
                 <?php endif; ?>
 
                 <?php
                 if (isset($_GET['hapus'])) : ?>
                   <script>
-                    Swal.fire("Data Customer Berhasil Dihapus");
+                    Swal.fire("Data Pegawai Berhasil Dihapus");
                   </script>
                 <?php endif; ?>
                 <!-- akhir alert -->
@@ -251,8 +251,8 @@ $result = $conn->query($query);
                       <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['nama_posisi'] ?>
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
-                        <a href="function/editcustomer.php?id="><i class="material-icons">edit</i></a>
-                        <a href="function/deletecustomer.php?id=" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
+                        <a href="function/editpegawai.php?id=<?= $pegawai['pegawai_id'] ?>"><i class="material-icons">edit</i></a>
+                        <a href="function/hapuspegawai.php?id=<?= $pegawai['pegawai_id'] ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
                       </td>
                     </tr>
                     <?php $num++;
