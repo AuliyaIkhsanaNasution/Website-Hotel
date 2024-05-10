@@ -57,7 +57,7 @@ if (isset($_POST["ubah"])) {
             <form action="" method="post" class="space-y-4 ">
 
                 <div>
-                    <label for="user_id" class="block text-sm font-medium text-gray-600">No KTP Customer</label>
+                    <label for="user_id" class="block text-sm font-medium text-gray-600">NIK Customer</label>
                     <input type="text" id="user_id" name="user_id" class="mt-1 p-2 w-full border rounded-md "  value="<?php echo $cst['user_id']; ?>" readonly>
                 </div>
                

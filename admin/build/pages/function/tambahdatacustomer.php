@@ -49,7 +49,7 @@ if (isset($_POST["submit"])) {
         <h6 class="mb-5 text-sm text-slate-500 ">*harap isi data Customer sesuai data yang ada</h6>
         <form action="" method="post" class="space-y-4 ">
             <div>
-                <label for="nik" class="block text-sm font-medium text-gray-600">No KTP Customer</label>
+                <label for="nik" class="block text-sm font-medium text-gray-600">NIK Customer</label>
                 <input type="text" id="nik" name="nik" placeholder="876564325689754" class="w-full p-2 mt-1 border rounded-md " required>
             </div>
             <div>
