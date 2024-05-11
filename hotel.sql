@@ -28,15 +28,15 @@ CREATE TABLE IF NOT EXISTS `detailpemesanan` (
   `harga_kamar_per_malam` decimal(10,2) NOT NULL,
   `fasilitas_plus` enum('Sarapan','Tanpa Sarapan') COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`detail_pemesanan_id`),
-  KEY `pemesanan_id` (`pemesanan_id`),
   KEY `FK_detailpemesanan_tipekamar` (`tipe_kamar`),
   KEY `FK_detailpemesanan_kamar` (`kamar_id`),
-  CONSTRAINT `detailpemesanan_ibfk_1` FOREIGN KEY (`pemesanan_id`) REFERENCES `pemesanan` (`pemesanan_id`),
+  KEY `FK_detailpemesanan_pemesanan` (`pemesanan_id`),
   CONSTRAINT `FK_detailpemesanan_kamar` FOREIGN KEY (`kamar_id`) REFERENCES `kamar` (`kamar_id`),
+  CONSTRAINT `FK_detailpemesanan_pemesanan` FOREIGN KEY (`pemesanan_id`) REFERENCES `pemesanan` (`pemesanan_id`),
   CONSTRAINT `FK_detailpemesanan_tipekamar` FOREIGN KEY (`tipe_kamar`) REFERENCES `tipekamar` (`tipe_kamar_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table hotel.detailpemesanan: ~0 rows (approximately)
 
 -- Dumping structure for table hotel.kamar
 CREATE TABLE IF NOT EXISTS `kamar` (
@@ -44,14 +44,18 @@ CREATE TABLE IF NOT EXISTS `kamar` (
   `nomor_kamar` int NOT NULL,
   `tipe_kamar_id` int DEFAULT NULL,
   `harga_kamar` int NOT NULL,
-  `fasilitas` enum('Tanpa Sarapan','Sarapan','','') COLLATE utf8mb4_general_ci NOT NULL,
+  `fasilitas` enum('Sarapan','Tanpa Sarapan') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status_kamar` enum('tersedia','dipesan','ditempati') COLLATE utf8mb4_general_ci DEFAULT 'tersedia',
+  `booking_date` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`kamar_id`),
   KEY `tipe_kamar_id` (`tipe_kamar_id`),
   CONSTRAINT `kamar_ibfk_1` FOREIGN KEY (`tipe_kamar_id`) REFERENCES `tipekamar` (`tipe_kamar_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table hotel.kamar: ~2 rows (approximately)
+REPLACE INTO `kamar` (`kamar_id`, `nomor_kamar`, `tipe_kamar_id`, `harga_kamar`, `fasilitas`, `status_kamar`, `booking_date`) VALUES
+	('SDB-001', 1, 2, 520000, 'Tanpa Sarapan', 'tersedia', '["2024-05-06","2024-05-07","2024-05-08","2024-05-06","2024-05-07","2024-05-08","2024-05-06","2024-05-07","2024-05-08","2024-05-11"]'),
+	('SDB-002', 2, 2, 670000, 'Sarapan', 'tersedia', NULL);
 
 -- Dumping structure for table hotel.pegawai
 CREATE TABLE IF NOT EXISTS `pegawai` (
@@ -66,33 +70,35 @@ CREATE TABLE IF NOT EXISTS `pegawai` (
   CONSTRAINT `pegawai_ibfk_1` FOREIGN KEY (`posisi_id`) REFERENCES `posisi` (`posisi_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table hotel.pegawai: ~0 rows (approximately)
 
 -- Dumping structure for table hotel.pemesanan
 CREATE TABLE IF NOT EXISTS `pemesanan` (
-  `pemesanan_id` int NOT NULL AUTO_INCREMENT,
+  `pemesanan_id` int NOT NULL,
   `user_id` int DEFAULT NULL,
   `tanggal_pesan` date NOT NULL,
   `tanggal_checkin` date NOT NULL,
   `tanggal_checkout` date NOT NULL,
   `jumlah_tamu` int NOT NULL,
   `total_harga` decimal(10,2) NOT NULL,
-  `status_pemesanan` enum('dikonfirmasi','batal','selesai') COLLATE utf8mb4_general_ci DEFAULT 'dikonfirmasi',
+  `status_pemesanan` enum('proses','dikonfirmasi','batal','selesai') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`pemesanan_id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
+  KEY `FK_pemesanan_user` (`user_id`),
+  CONSTRAINT `FK_pemesanan_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table hotel.pemesanan: ~0 rows (approximately)
 
 -- Dumping structure for table hotel.posisi
 CREATE TABLE IF NOT EXISTS `posisi` (
   `posisi_id` int NOT NULL AUTO_INCREMENT,
   `posisi` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`posisi_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table hotel.posisi: ~0 rows (approximately)
+REPLACE INTO `posisi` (`posisi_id`, `posisi`) VALUES
+	(1, 'Pimpinan');
 
 -- Dumping structure for table hotel.tipekamar
 CREATE TABLE IF NOT EXISTS `tipekamar` (
@@ -107,13 +113,19 @@ CREATE TABLE IF NOT EXISTS `tipekamar` (
   PRIMARY KEY (`tipe_kamar_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table hotel.tipekamar: ~6 rows (approximately)
+REPLACE INTO `tipekamar` (`tipe_kamar_id`, `slug`, `nama_tipe`, `jmlh_tamu`, `deskripsi`, `ukuran`, `harga`, `image`) VALUES
+	(1, 'superiortwin', 'Superior-Twin Bed', 2, 'Tipe Kamar yang memakai dua bed single', 27, 700000, 'stb1'),
+	(2, 'Superior', 'Superior-Double Bed', 2, 'tipe kamar ini menggunakan satu king bed', 27, 700000, 'sdb1'),
+	(3, 'deluxetwin', 'Deluxe-Twin Bed', 2, 'kamar ini memakai dua single bed', 30, 830000, 'dtb2'),
+	(4, 'deluxe', 'Deluxe-Double Bed', 2, 'kamar ini memakai satu king bed', 30, 830000, 'ddb1'),
+	(5, 'family', 'Family Room', 2, 'tipe kamar yang lebih luas dan cocok untuk 3 orang', 32, 1000000, 'family2'),
+	(6, 'tematik', 'Tematik Room', 2, 'Tipe kamar yang luas dan diberi kesan nusantara didalamnya', 32, 1000000, 'tematik1');
 
 -- Dumping structure for table hotel.user
 CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `user_id` int NOT NULL DEFAULT '0',
+  `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `nama` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
@@ -121,10 +133,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Data exporting was unselected.
+-- Dumping data for table hotel.user: ~0 rows (approximately)
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+hoteltipekamar
