@@ -16,18 +16,27 @@ if (isset($_POST["submit"])) {
     $ukuran = htmlspecialchars($_POST["ukuran"]);
     $harga = htmlspecialchars($_POST["harga"]);
     $deskripsi = htmlspecialchars($_POST["deskripsi"]);
+    $gambar_lama = htmlspecialchars($_POST["gambar_lama"]);
 
+    // cek apakah user uploadgambar baru atau tidak
+    if ($_FILES["image"]["error"] === 4) {
+        $image = $gambar_lama;
+    } else {
+        $image = upload();
+    }
 
-    $query = "UPDATE tipe_kamar SET
-        nik = '$nik',
-        email = '$email',
-        nama = '$nama',   
-        alamat = '$alamat',
-        no_telepon = '$no_telepon'
-    WHERE tipe_kamar_id = '$user_id'";
+    $query = "UPDATE tipekamar SET
+        slug = '$slug',
+        nama_tipe = '$nama_tipe',
+        jmlh_tamu = '$jmlh_tamu',   
+        ukuran = '$ukuran',
+        harga = '$harga',
+        deskripsi = '$deskripsi',
+        image = '$image'
+    WHERE tipe_kamar_id = '$tipe_kamar_id'";
 
     if (mysqli_query($conn, $query) === TRUE) {
-        header("location: ../datacustomer.php?ubah=true");
+        header("location: ../datatipekamar.php?ubah=true");
     } else {
         echo "Error: " . $query . "<br>" . $conn->error;
     }
@@ -60,6 +69,7 @@ if (isset($_POST["submit"])) {
 
         <input type="hidden" name="tipe_kamar_id" value="<?= $tipe['tipe_kamar_id'] ?>">
         <input type="hidden" name="gambar_lama" value="<?= $tipe['image'] ?>">
+
          <div>
                 <label for="slug" class="block text-sm font-medium text-gray-600">Tipe</label>
                 <input type="text" id="slug" name="slug" placeholder="Deluxe" class="w-full p-2 mt-1 border rounded-md " required value="<?php echo $tipe['slug']; ?>">
@@ -87,7 +97,7 @@ if (isset($_POST["submit"])) {
             <div>
                 <label for="image" class="block text-sm font-medium text-gray-600">Image Kamar</label>
                 <img class="w-full rounded-md" style="max-width: 200px;" src="../../assets/img/<?= $tipe['image'] ?>.jpeg" alt="" />
-                <input type="file" id="image" name="image" placeholder="" class="w-full p-2 mt-1 border rounded-md " required>
+                <input type="file" id="image" name="image" placeholder="" class="w-full p-2 mt-1 border rounded-md " >
             </div>
             
             <div>
