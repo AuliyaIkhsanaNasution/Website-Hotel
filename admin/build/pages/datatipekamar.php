@@ -215,15 +215,15 @@ $hasil = $conn->query($query);
               <table class="items-center w-full mb-0 align-top border-collapse  text-slate-500">
                 <thead class="align-bottom">
                   <tr>
-                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b  #FFFFFFborder-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">No</th>
-                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tipe</th>
-                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nama Tipe</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b  #FFFFFFborder-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">No</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tipe</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nama Tipe</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Jumlah Tamu/Kamar</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Ukuran</th>
-                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Harga Kamar/Permalam</th>
-                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Deskripsi</th>
-                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Image</th>
-                    <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Control</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Harga Kamar/Permalam</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Deskripsi</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Image</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Control</th>
                   </tr>
                 </thead>
                 <tbody class="align-center">
@@ -251,9 +251,9 @@ $hasil = $conn->query($query);
                       </td>
                       <td ><img class="w-full rounded-md" style="max-width: 700px;" src="../assets/img/<?= $tipekamar['image'] ?>.jpeg" alt="" />
                       </td>
-                      <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
-                        <a href="function/edittipekamar.php?id=<?= $tipekamar['tipe_kamar_id'] ?>"><i class="material-icons">edit</i></a>
-                        <a href="function/hapustipekamar.php?id=<?= $tipekamar['tipe_kamar_id'] ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
+                      <td class="  inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                        <a href="function/edittipekamar.php?id=<?= $tipekamar['tipe_kamar_id'] ?>"><i class="material-icons text-center">edit</i></a>
+                        <a href="function/hapustipekamar.php?id=<?= $tipekamar['tipe_kamar_id'] ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons text-center">delete</i></a>
                       </td>
                     </tr>
                     <?php $num++;

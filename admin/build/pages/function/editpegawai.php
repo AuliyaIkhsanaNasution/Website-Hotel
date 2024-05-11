@@ -41,8 +41,8 @@ if (mysqli_query($conn, $query) === TRUE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="../../assets/img/logo.jpeg" />
-    <title>Form Tambah Data Pegawai</title>
+    <link rel="icon" type="image/png" href="../../assets/img/logo.png" />
+    <title>Form Edit Data Pegawai</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 </head>
@@ -52,7 +52,7 @@ if (mysqli_query($conn, $query) === TRUE) {
 <?php while ($pgw = $hasil->fetch_assoc()) { ?> 
 
     <div class="max-w-xl p-8 mx-auto bg-yellow-100 rounded shadow-md outline outline-2 outline-offset-2 outline-yellow-500">
-        <h2 class="mb-3 text-2xl font-bold text-center text-slate-600 ">Tambah Data Pegawai</h2>
+        <h2 class="mb-3 text-2xl font-bold text-center text-slate-600 ">Edit Data Pegawai</h2>
         <h6 class="mb-5 text-sm text-slate-500 ">*harap isi data Pegawai sesuai data yang ada</h6>
         <form action="" method="post" class="space-y-4 ">
             <div>

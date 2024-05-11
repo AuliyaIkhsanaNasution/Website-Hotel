@@ -34,7 +34,7 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="../../assets/img/logo.jpeg" />
+    <link rel="icon" type="image/png" href="../../assets/img/logo.png" />
     <title>Form Tambah Data Tipe Kamar</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -66,11 +66,11 @@ if (isset($_POST["submit"])) {
                 <input type="number" id="harga" name="harga" placeholder="700000" class="w-full p-2 mt-1 border rounded-md " required>
             </div>
             <div>
-                <label for="deskripsi" class="block text-sm font-medium text-gray-600">Deskripsi Kamar (gambar harus .jpeg)</label>
+                <label for="deskripsi" class="block text-sm font-medium text-gray-600">Deskripsi Kamar </label>
                 <input type="text" id="deskripsi" name="deskripsi" placeholder="..." class="w-full p-2 mt-1 border rounded-md " required>
             </div>
             <div>
-                <label for="image" class="block text-sm font-medium text-gray-600">Image Kamar</label>
+                <label for="image" class="block text-sm font-medium text-gray-600">Image Kamar (gambar harus .jpeg)</label>
                 <input type="file" id="image" name="image" placeholder="" class="w-full p-2 mt-1 border rounded-md " required>
             </div>
             
@@ -80,7 +80,7 @@ if (isset($_POST["submit"])) {
         </form>
     </div>
 
-    <p class="mt-4 text-lg text-center text-gray-600">Tidak ingin menambahkan data? <a href="../datacustomer.php" class="text-blue-700 no-underline hover:underline">Klik kembali</a></p>
+    <p class="mt-4 text-lg text-center text-gray-600">Tidak ingin menambahkan data? <a href="../datatipekamar.php" class="text-blue-700 no-underline hover:underline">Klik kembali</a></p>
 </body>
 
 </html>

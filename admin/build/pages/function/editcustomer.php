@@ -41,8 +41,8 @@ if (isset($_POST["ubah"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="../../assets/img/logo.jpeg" />
-    <title>Form Edit Data Pelanggan</title>
+    <link rel="icon" type="image/png" href="../../assets/img/logo.png" />
+    <title>Form Edit Data Customer</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 </head>
@@ -55,6 +55,7 @@ if (isset($_POST["ubah"])) {
 
         <div class="max-w-xl mx-auto  rounded p-8 shadow-md outline outline-2  outline-offset-2 outline-yellow-500 bg-yellow-100">
             <h2 class="text-2xl font-bold mb-8 text-slate-600 text-center ">Edit Data Customer</h2>
+            <h6 class="mb-5 text-sm text-slate-500 ">*harap isi Data Customer sesuai data yang ada</h6>
             <form action="" method="post" class="space-y-4 ">
 
                 <div>
@@ -87,7 +88,7 @@ if (isset($_POST["ubah"])) {
             </form>
         </div>
 
-        <p class="mt-4 text-lg text-gray-600 text-center">Tidak ingin menambahkan data? <a href="../datapelanggan.php" class="text-blue-700 no-underline hover:underline">Klik kembali</a></p>
+        <p class="mt-4 text-lg text-gray-600 text-center">Tidak ingin menambahkan data? <a href="../datacustomer.php" class="text-blue-700 no-underline hover:underline">Klik kembali</a></p>
 </body>
 
 <?php

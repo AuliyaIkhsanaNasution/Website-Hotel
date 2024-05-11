@@ -1,10 +1,12 @@
 <?php 
 require "function/koneksi.php";
 
-$query = "SELECT pegawai.pegawai_id, pegawai.email, pegawai.nama, pegawai.alamat, pegawai.no_telepon, posisi.posisi AS    nama_posisi
-          FROM pegawai
-          INNER JOIN posisi ON pegawai.posisi_id = posisi.posisi_id";
-$result = $conn->query($query);
+// read
+$query = "SELECT kamar.kamar_id, kamar.nomor_kamar, kamar.booking_date, tipekamar.nama_tipe
+FROM kamar
+INNER JOIN tipekamar ON kamar.tipe_kamar_id = tipekamar.tipe_kamar_id;
+";
+$hasil = $conn->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +17,7 @@ $result = $conn->query($query);
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" href="../assets/img/logo.png" />
-  <title>Data Pegawai Nuansa Nusantara Hotel</title>
+  <title>Data Kamar Nuansa Nusantara Hotel</title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
   <!-- Font Awesome Icons -->
@@ -43,7 +45,7 @@ $result = $conn->query($query);
       <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times  text-slate-400 xl:hidden" sidenav-close></i>
       <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap  text-slate-700" href="dashboard.php" target="_blank">
         <img src="../assets/img/logo.png" class="inline h-full max-w-full transition-all duration-200  ease-nav-brand max-h-8 rounded-full" alt="main_logo" />
-        <img src="" class="hidden h-full max-w-full transition-all duration-200  ease-nav-brand max-h-8" alt="main_logo" />
+        <img src="" class="hidden h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8" alt="main_logo" />
         <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Nuansa Nusantara</span>
       </a>
     </div>
@@ -62,7 +64,7 @@ $result = $conn->query($query);
         </li>
 
         <li class="mt-0.5 w-full">
-          <a class="   py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datacustomer.php">
+          <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datacustomer.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
             </div>
@@ -71,7 +73,7 @@ $result = $conn->query($query);
         </li>
 
         <li class="mt-0.5 w-full">
-          <a class="bg-blue-500/13   py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapegawai.php">
+          <a class="   py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapegawai.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
             </div>
@@ -80,7 +82,7 @@ $result = $conn->query($query);
         </li>
 
         <li class="mt-0.5 w-full">
-          <a class="   py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datakamar.php">
+          <a class=" bg-blue-500/13   py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datakamar.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
               <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-credit-card"></i>
             </div>
@@ -112,7 +114,7 @@ $result = $conn->query($query);
 
     <div class="mx-4">
       <!-- load phantom colors for card after: -->
-      <!-- <p class="invisible hidden text-gray-800 text-red-500 text-red-600 text-blue-500 bg-emerald-500/30 bg-orange-500/30 bg-red-500/30 after:bg-gradient-to-tl after:from-zinc-800 after:to-zinc-700  after:from-blue-700 after:to-cyan-500 after:from-orange-500 after:to-yellow-500 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-orange-600 after:from-slate-600 after:to-slate-300 text-emerald-500 text-cyan-500 text-slate-400"></p> -->
+      <!-- <p class="invisible hidden text-gray-800 text-red-500 text-red-600 text-blue-500 after:from-blue-700 after:to-cyan-500 after:from-orange-500 after:to-yellow-500 after:from-green-600 after:to-lime-400 after:from-red-600 after:to-orange-600 after:from-slate-600 after:to-slate-300 text-emerald-500 text-cyan-500 text-slate-400"></p> -->
       <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border" sidenav-card>
         <img class="w-1/3 mx-auto rounded-10" src="../assets/img/logo.png" alt="sidebar illustrations" />
         <div class="flex-auto w-full p-4 pt-0 text-center">
@@ -139,9 +141,9 @@ $result = $conn->query($query);
             <li class="text-sm leading-normal">
               <a class="text-white opacity-50" href="javascript:;">Pages</a>
             </li>
-            <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Data Pegawai</li>
+            <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Data Kamar</li>
           </ol>
-          <h6 class="mb-0 font-bold text-white capitalize text-2xl">Data Pegawai</h6>
+          <h6 class="mb-0 font-bold text-white capitalize text-2xl">Data Kamar</h6>
         </nav>
 
         <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -178,31 +180,33 @@ $result = $conn->query($query);
 
     <!-- table -->
     <div class="mb-10 mt-5 w-fit">
-      <a href="function/tambahdatapegawai.php" class="block ms-8 mt- py-3 px-6 rounded-lg bg-yellow-400 text-gray-800 hover:bg-slate-200 hover:scale-110 font-bold ">Tambah Data Pegawai</a>
+      <a href="function/tambahkamar.php" class="block ms-8 mt-3 py-3 px-6 rounded-lg bg-yellow-400 text-gray-800 hover:bg-slate-200 hover:scale-110 font-bold ">Tambah Data Kamar</a>
     </div>
+
 
     <!-- alert -->
     <?php
                 if (isset($_GET['tambah'])) : ?>
                   <script>
-                    Swal.fire("Data Pegawai Berhasil Ditambahkan");
+                    Swal.fire("Data Kamar Berhasil Ditambahkan");
                   </script>
                 <?php endif; ?>
 
                 <?php
                 if (isset($_GET['ubah'])) : ?>
                   <script>
-                    Swal.fire("Data Pegawai Berhasil Diupdate");
+                    Swal.fire("Data Kamar Berhasil Diupdate");
                   </script>
                 <?php endif; ?>
 
                 <?php
                 if (isset($_GET['hapus'])) : ?>
                   <script>
-                    Swal.fire("Data Pegawai Berhasil Dihapus");
+                    Swal.fire("Data Kamar Berhasil Dihapus");
                   </script>
                 <?php endif; ?>
                 <!-- akhir alert -->
+                
 
     <!-- table 1 -->
 
@@ -210,7 +214,7 @@ $result = $conn->query($query);
       <div class="flex-none w-full max-w-full px-3">
         <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl  rounded-2xl bg-clip-border">
           <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-            <h6 class=" font-semibold text-lg">Data Pegawai</h6>
+            <h6 class=" font-semibold text-lg">Data Kamar</h6>
           </div>
           <div class="flex-auto px-0 pt-0 pb-2 ">
             <div class="p-0 overflow-x-auto">
@@ -218,47 +222,40 @@ $result = $conn->query($query);
                 <thead class="align-bottom">
                   <tr>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b  #FFFFFFborder-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">No</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">ID Pegawai</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Email</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nama Pegawai</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Alamat</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">No Telephone</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Posisi</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">ID Kamar</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nomor Kamar</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tipe Kamar</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Booking_date</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Control</th>
                   </tr>
                 </thead>
-                <tbody class="align-center">
-
+                <tbody class="align-center ">
                 <?php 
 
-                  $num = 1;
-                  while ($pegawai = $result->fetch_assoc()) {
-                  ?>
+              $num = 1;
+              while ($kamar = $hasil->fetch_assoc()) {
+          ?>
 
-                    <tr>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%]"><?= $num ?>
+                    <center><tr>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%] "><?= $num ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['pegawai_id'] ?>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $kamar['kamar_id'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['email'] ?>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $kamar['nomor_kamar'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['nama'] ?>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $kamar['nama_tipe'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['alamat'] ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['no_telepon'] ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pegawai['nama_posisi'] ?>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $kamar['booking_date'] ?>
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
-                        <a href="function/editpegawai.php?id=<?= $pegawai['pegawai_id'] ?>"><i class="material-icons">edit</i></a>
-                        <a href="function/hapuspegawai.php?id=<?= $pegawai['pegawai_id'] ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
+                        <a href="function/editkamar.php?id=<?= $kamar['kamar_id'] ?>"><i class="material-icons">edit</i></a>
+                        <a href="function/hapuskamar.php?id=<?= $kamar['kamar_id'] ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
                       </td>
-                    </tr>
+                    </tr></center>
+
                     <?php $num++;
                   }
                   ?>
-
                 </tbody>
               </table>
             </div>
