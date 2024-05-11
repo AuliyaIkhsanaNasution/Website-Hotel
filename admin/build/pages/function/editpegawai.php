@@ -42,7 +42,7 @@ if (mysqli_query($conn, $query) === TRUE) {
     <!-- tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="../../assets/img/logo.jpeg" />
-    <title>Form Tambah Data Customer</title>
+    <title>Form Tambah Data Pegawai</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 </head>
