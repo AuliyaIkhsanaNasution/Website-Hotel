@@ -1,7 +1,3 @@
-<?php
-date_default_timezone_set('Asia/Jakarta');
-?>
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
@@ -10,6 +6,8 @@ date_default_timezone_set('Asia/Jakarta');
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Keranjang</title>
 
+  <!-- sweetalert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- tailwind -->
   <link href="../src/output.css" rel="stylesheet" />
@@ -23,6 +21,12 @@ date_default_timezone_set('Asia/Jakarta');
 
   <!-- icons -->
   <script src="https://kit.fontawesome.com/22f19496c5.js" crossorigin="anonymous"></script>
+
+  <!-- midtrans payment -->
+  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-FIB-3x8kzqmNejsZ"></script>
+
+  <!-- ajax jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body class="overflow-x-hidden bg-slate-100">
@@ -82,28 +86,33 @@ date_default_timezone_set('Asia/Jakarta');
       <hr class="mb-2">
       <center>
         <div class="max-w-4xl p-3 mb-5 bg-white border-l-2 border-r-2 border-gray-200 rounded-lg shadow ">
-          <form action="function/pemesanan.php" method="POST">
+          <form id="payment-form">
             <h4 class="text-2xl font-bold lg:text-xl">Data Diri</h4>
             <span class="block mb-3 text-sm lg:text-sm">Isi data diri terlebih dahulu dan lakukan pembayaran pemesanan</span><br>
-            <div class="grid gap-6 mb-6 md:grid-cols-2">
 
-              <input type="hidden" id="hiddenInput" name="localData">
+            <input type="hidden" id="hiddenInput" name="localData">
+            <input type="hidden" id="total" name="total" value="0">
+            <input type="hidden" name="name" id="name">
+            <input type="hidden" name="quantity" id="quantity">
+            <input type="hidden" name="price" id="price">
+
+            <div class="grid gap-6 mb-6 md:grid-cols-2">
 
               <div>
                 <label for="nik" class="block mb-2 text-sm font-medium text-left text-gray-900 ">NIK KTP</label>
-                <p class="text-xs font-light text-left text-yellow-500">*NIK digunakan untuk proses validasi pemesanan saay checkin</p>
+                <p class="text-xs font-light text-left text-yellow-500">NIK digunakan saat verifikasi & checkin pemesanan.</p>
                 <div class="flex">
                   <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300 rounded-e-0 border-e-0 rounded-s-md ">
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
                     </svg>
                   </span>
-                  <input type="number" id="nik" name="nik" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="xxxxxx" required>
+                  <input type="number" id="nik" name="nik" class="rounded-none rounded-e-lg bg-gray-50 border text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm border-gray-300 p-2.5  " placeholder="xxxxx" required>
                 </div>
               </div>
               <div>
                 <label for="nama" class="block mb-2 text-sm font-medium text-left text-gray-900 ">Nama Lengkap</label>
-                <p class="text-xs font-light text-left">.</p>
+                <p class="text-xs font-light text-left text-white">.</p>
                 <div class="flex">
                   <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-gray-300 rounded-e-0 border-e-0 rounded-s-md ">
                     <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -158,7 +167,7 @@ date_default_timezone_set('Asia/Jakarta');
               </div>
               <label for="remember" class="text-sm font-medium text-gray-900 ms-2 ">I agree with the <a href="#" class="text-blue-600 hover:underline">terms and conditions</a>.</label>
             </div>
-            <button type="submit" name="submit" class="text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 ">Submit</button>
+            <button type="submit" name="submit" id="pay-button" class="text-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 ">Submit</button>
           </form>
         </div>
       </center>
@@ -234,6 +243,9 @@ date_default_timezone_set('Asia/Jakarta');
   <!-- akhir modal -->
 
 
+  <!-- scriipt payment -->
+  <script src="../src/js/payment.js"></script>
+
   <!-- flowbite -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
@@ -248,7 +260,38 @@ date_default_timezone_set('Asia/Jakarta');
     document.addEventListener("DOMContentLoaded", function() {
       const formData = localStorage.getItem('keranjang_');
       if (formData) {
-        document.getElementById('hiddenInput').value = formData;
+        const data = JSON.parse(formData); // Mengubah JSON string kembali menjadi objek
+
+        // Array untuk menyimpan data kamar, tamu, dan total
+        let kamar = [];
+        let tamu = [];
+        let price = []; // Ini akan menyimpan daftar 'total' dari masing-masing item sebagai harga
+
+        // Menghitung total dari semua entri 'total' dalam objek dan mengumpulkan data untuk kamar, tamu, dan price
+        let totalSum = 0;
+        for (const item of data) { // Diasumsikan data adalah array dari objek
+          if (item.kamar) kamar.push(item.kamar); // Menambahkan kamar ke array
+          if (item.tamu) tamu.push(item.tamu); // Menambahkan tamu ke array
+          if (item.total) {
+            price.push(item.total); // Menambahkan total tiap item ke array price
+            totalSum += hidden(item.total); // Menambahkan nilai total setelah memastikan itu adalah angka
+          }
+        }
+
+        // Menampilkan total yang dihitung di input 'total'
+        document.getElementById('total').value = totalSum.toFixed(2); // Menformat total ke dua desimal
+
+        // Menyimpan array dalam format JSON ke input tersembunyi
+        document.getElementById('hiddenInput').value = JSON.stringify({
+          kamar,
+          tamu,
+          price
+        });
+
+        // Menampilkan price sebagai list di input 'price' (misalkan untuk debug atau review)
+        document.getElementById('price').value = JSON.stringify(price);
+        document.getElementById('quantity').value = JSON.stringify(tamu);
+        document.getElementById('name').value = JSON.stringify(kamar);
       }
     });
   </script>
