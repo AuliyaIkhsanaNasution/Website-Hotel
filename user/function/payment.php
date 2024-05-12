@@ -18,7 +18,7 @@ foreach ($localData as $item) {
     $item_details[] = [
         'id' => 'item' . rand(),  // ID unik untuk setiap item, sesuaikan bila diperlukan
         'name' => $item['kamar'], // 'kamar' sebagai nama item
-        'quantity' => count($localData), // Jumlah total item dalam localData
+        'quantity' => 1, // Jumlah total item dalam localData
         'price' => $item['total'] // 'total' sebagai harga item
     ];
 }
@@ -31,7 +31,7 @@ foreach ($item_details as $item) {
 $params = [
     'transaction_details' => [
         'order_id' => $orderId,
-        'gross_amount' => $calculated_total  // Gunakan total yang dihitung ulang
+        'gross_amount' =>  $calculated_total // Gunakan total yang dihitung ulang
     ],
     'item_details' => $item_details,
     'customer_details' => [

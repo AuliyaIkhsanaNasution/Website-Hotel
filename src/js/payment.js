@@ -5,7 +5,7 @@ const form = document.getElementById("payment-form");
 payButton.addEventListener("click", async function (e) {
   e.preventDefault(); // Perbaikan tanda kurung
   const formData = new FormData(form); // Huruf besar pada FormData
-  const data = new URLSearchParams(formData);
+  let data = new URLSearchParams(formData);
   const localData = localStorage.getItem("keranjang_");
 
   // Cek apakah localData ada, dan tambahkan ke data yang akan dikirim jika ada

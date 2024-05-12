@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             </div>
             <div class="pt-4 pl-2 text-left basis-1/2">
               <h3 class="pt-4 font-semibold text-md lg:text-xl lg:font-bold">${booking.tipeKamar}</h3>
-              <p class="mb-3 text-xs font-bold lg:text-base">${formatCurrency(booking.harga)}<span class="text-sm font-medium lg:text-sm">/Room</span></p>
+              <p class="mb-3 text-xs font-bold lg:text-base">${formatCurrency(booking.harga)}<span class="text-sm font-medium lg:text-sm">/Room on one night</span></p>
               <span class="inline-block p-1 mb-2 text-xs font-medium bg-gray-200 rounded-lg lg:text-xs">(${booking.checkin}) - (${booking.checkout})</span>
               <span class="p-1 m-2 text-xs font-medium bg-gray-200 rounded-lg lg:text-xs">${booking.tamu} orang dewasa</span><br>
               <span class="p-1 mt-3 text-xs font-medium ${booking.fasilitas == "Sarapan" ? "text-green-500" : "text-red-500"} bg-gray-200 rounded-lg lg:text-xs">${
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
           }</span>
             </div>
             <div class="pt-8 text-right basis-1/4">
-              <span class="text-sm lg:text-sm">*Harga Untuk Satu Malam</span><br>
               <span class="text-2xl font-semibold lg:text-2xl">${formatCurrency(booking.total)}</span><br>
               <span class="text-xs lg:text-xs">sudah termasuk pajak</span><br>
             </div>

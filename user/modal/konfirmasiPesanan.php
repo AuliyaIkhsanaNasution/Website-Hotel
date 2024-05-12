@@ -20,7 +20,6 @@
                  <div class="grid grid-cols-2 gap-4 mb-4">
                      <input type="hidden" name="checkin" id="checkin" value="<?= $checkin ?>">
                      <input type="hidden" name="checkout" id="checkout" value="<?= $checkout ?>">
-                     <input type="hidden" name="harga" id="harga" value="<?= $rowType['harga'] ?>">
                      <input type="hidden" name="image" id="image" value="<?= $rowType['image'] ?>">
                      <input type="hidden" name="idType" id="idType" value="<?= $rowType['tipe_kamar_id'] ?>">
 
@@ -39,11 +38,18 @@
                              <option selected>--Pilih Kamar--</option>
 
                              <?php
-                                $kamar = mysqli_query($conn, "SELECT * FROM kamar WHERE tipe_kamar_id = '$rowType[tipe_kamar_id]' AND status_kamar = 'tersedia'");
-                                while ($rowKamar = mysqli_fetch_assoc($kamar)) :
+                                $kamar = mysqli_query($conn, "SELECT * FROM kamar WHERE tipe_kamar_id = '$rowType[tipe_kamar_id]'");
+                                while ($rowKamar = mysqli_fetch_assoc($kamar)) {
+                                    $bookingDates = json_decode($rowKamar['booking_date']); // Decode JSON booking_date
+                                    echo "<script>console.log('Booking Dates: " . json_encode($bookingDates) . "');</script>"; // Debug booking dates
+
+                                    // Cek apakah tanggal checkin ada di booking dates
+                                    if (!in_array($checkin, $bookingDates)) {
                                 ?>
-                                 <option value="<?= $rowKamar['kamar_id'] ?>"><?= $rowKamar['kamar_id'] ?></option>
-                             <?php endwhile; ?>
+                                     <option value="<?= $rowKamar['kamar_id'] ?>"><?= $rowKamar['kamar_id'] ?></option>
+                             <?php }
+                                }
+                                ?>
                          </select>
                      </div>
                      <div class="col-span-2">
@@ -54,8 +60,8 @@
                          </select>
                      </div>
                      <div class="col-span-2">
-                         <label for="total" class="block mb-2 text-sm font-medium text-gray-900 ">Total Harga</label>
-                         <input type="number" name="total" id="total" data-harga-awal="<?= $rowType['harga'] ?>" value="<?= $rowType['harga'] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " readonly>
+                         <label for="harga" class="block mb-2 text-sm font-medium text-gray-900 ">Total Harga</label>
+                         <input type="number" name="harga" id="harga" data-harga-awal="<?= $rowType['harga'] ?>" value="<?= $rowType['harga'] ?>" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " readonly>
                      </div>
                  </div>
                  <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
