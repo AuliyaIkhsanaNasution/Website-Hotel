@@ -33,10 +33,10 @@ if (isset($_POST["submit"])) {
 
 
     // Ambil pemesanan_id yang baru saja dimasukkan
-    $pemesanan_id = mysqli_insert_id($koneksi);
+    $pemesanan_id = mysqli_insert_id($conn);
 
     // / Lakukan query SQL untuk memasukkan data ke dalam tabel detail pemesanan
-    $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
+    $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar_id, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
 
 
     if ($conn->query($query_detail_pemesanan) === TRUE) {
