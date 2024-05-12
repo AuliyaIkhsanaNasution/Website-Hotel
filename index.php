@@ -38,7 +38,7 @@
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Ada Kesalahan!",
+        text: "Ada Kesalahan dalam penginputan TANGGAL, masukkan tanggal yang benar!",
         footer: 'Coba Ulangi Kembali'
       });
     </script>
@@ -56,12 +56,13 @@
   <!-- navbar -->
   <nav class="fixed top-0 z-20 w-full bg-blue-800 shadow-sm start-0">
     <div class="flex flex-wrap items-center justify-between max-w-screen-xl p-4 mx-auto">
-      <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <a href="https://github.com/AuliyaIkhsanaNasution/Website-Hotel" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="assets/images/logo.png" class="h-8 rounded-lg" alt="Flowbite Logo" />
-        <span class="self-center text-2xl font-bold text-yellow-400 whitespace-nowrap">Nuansa Nusantara</span>
+        <span class="self-center text-lg font-bold text-yellow-400 lg:text-2xl whitespace-nowrap">Nuansa Nusantara</span>
       </a>
       <div class="flex space-x-3 lg:order-2 lg:space-x-0 rtl:space-x-reverse">
-        <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-sticky" aria-expanded="false">
+        <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-yellow-500 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">Cek Booking</button>
+        <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-sticky" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
@@ -70,25 +71,25 @@
       </div>
       <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-sticky">
         <ul id="nav" class="flex flex-col p-4 mt-4 font-semibold border border-gray-100 rounded-lg lg:p-0 bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent lg:text-xl">
-          <li>
+          <li class="text-base">
             <a href="#" class="block px-3 py-2 font-medium text-gray-900 bg-yellow-500 rounded-sm nav-item lg:text-yellow-400 lg:bg-transparent lg:text-ambeer-700 lg:p-0 lg:underline underline-offset-8" aria-current="page">Home</a>
           </li>
-          <li>
+          <li class="text-base">
             <a href="#about" class="block px-3 py-2 font-medium text-gray-900 rounded nav-item lg:text-white hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-amber-700 lg:p-0">Tentang Kami</a>
           </li>
-          <li>
+          <li class="text-base">
             <a href="#best" class="block px-3 py-2 font-medium text-gray-900 rounded nav-item lg:text-white hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-amber-700 lg:p-0"> Kamar Terbaik</a>
           </li>
-          <li>
+          <li class="text-base">
             <a href="#facilities" class="block px-3 py-2 font-medium text-gray-900 rounded nav-item lg:text-white hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-amber-700 lg:p-0">Fasilitas</a>
           </li>
-          <li>
+          <li class="text-base">
             <a href="#services" class="block px-3 py-2 font-medium text-gray-900 rounded nav-item lg:text-white hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-amber-700 lg:p-0">layanan</a>
           </li>
-          <li>
+          <li class="text-base">
             <a href="#gallery" class="block px-3 py-2 font-medium text-gray-900 rounded nav-item lg:text-white hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-amber-700 lg:p-0">Gallery</a>
           </li>
-          <li>
+          <li class="text-base">
             <a href="#contact" class="block px-3 py-2 font-medium text-gray-900 rounded nav-item lg:text-white hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-amber-700 lg:p-0">Kontak</a>
           </li>
         </ul>

@@ -1,21 +1,20 @@
 <?php
-
 require 'function/koneksi.php';
+date_default_timezone_set('Asia/Jakarta');
 
 if (!isset($_POST['checkin']) && !isset($_POST['checkout']) && !isset($_POST['jmlh'])) {
     header('location: ../index.php?error=true');
 }
 
-
 $checkin = $_POST['checkin'];
 $checkout = $_POST['checkout'];
 $jmlh = $_POST['jmlh'];
 
-
-// pengecekan checkin dan checkout
-if ($checkin > $checkout) {
+// pengecekan hari tidak boleh dibawah hari ini & pengecekan checkin dan checkout
+if ($checkin < date('Y-m-d') || $checkin > $checkout) {
     header('location: ../index.php?error=true');
 }
+
 
 // ambil data type dan nomor kamar
 $typeKamar = mysqli_query($conn, "SELECT * FROM tipeKamar");
