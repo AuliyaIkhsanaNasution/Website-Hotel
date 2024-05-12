@@ -1,8 +1,9 @@
 <?php
-require "koneksi.php";
+require "koneksi.php"; // Mengimport file koneksi.php
 
 // memanggil apabila tombol submit di klik
 if (isset($_POST["submit"])) {
+    // Ambil data dari formulir dengan menggunakan fungsi htmlspecialchars untuk menghindari serangan XSS
     $pemesanan_id = htmlspecialchars($_POST["pemesanan_id"]);
     $nik = htmlspecialchars($_POST["nik"]);
     $tanggal_pesan = date('Y-m-d');
@@ -10,8 +11,8 @@ if (isset($_POST["submit"])) {
     $tanggal_checkout = htmlspecialchars($_POST["tanggal_checkout"]);
     $jumlah_tamu = htmlspecialchars($_POST["jumlah_tamu"]);
     $status_pemesanan = htmlspecialchars($_POST["status_pemesanan"]);
-    $kamar = htmlspecialchars($_POST["kamar"]);
-    $tipe_kamar = htmlspecialchars($_POST["tipe_kamar"]);
+    $kamar = isset($_POST["kamar"]) ? htmlspecialchars($_POST["kamar"]) : '';
+    $tipe_kamar = isset($_POST["tipe_kamar"]) ? htmlspecialchars($_POST["tipe_kamar"]) : '';
     $harga_kamar = htmlspecialchars($_POST["harga_kamar"]);
     $fasilitas_plus = htmlspecialchars($_POST["fasilitas_plus"]);
 
@@ -28,24 +29,28 @@ if (isset($_POST["submit"])) {
         $total_harga += 100000; // Biaya tambahan untuk sarapan
     }
 
-    // Lakukan query SQL untuk memasukkan data ke dalam tabel pemesanan
+    /// Lakukan query SQL untuk memasukkan data ke dalam tabel pemesanan
     $query_pemesanan = "INSERT INTO pemesanan (pemesanan_id, user_id, tanggal_pesan, tanggal_checkin, tanggal_checkout, jumlah_tamu, total_harga, status_pemesanan) VALUES ('$pemesanan_id', '$nik', '$tanggal_pesan', '$tanggal_checkin', '$tanggal_checkout', '$jumlah_tamu', '$total_harga', '$status_pemesanan')";
 
+    // Lakukan query untuk memasukkan data pemesanan
+    if ($conn->query($query_pemesanan) === TRUE) {
 
-    // Ambil pemesanan_id yang baru saja dimasukkan
-    $pemesanan_id = mysqli_insert_id($conn);
+        $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar_id, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
 
-    // / Lakukan query SQL untuk memasukkan data ke dalam tabel detail pemesanan
-    $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar_id, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
-
-
-    if ($conn->query($query_detail_pemesanan) === TRUE) {
-        header("location: ../datapemesanan.php?tambah=true");
+        // Lakukan query untuk memasukkan data detail pemesanan
+        if ($conn->query($query_detail_pemesanan) === TRUE) {
+            header("location: ../datapemesanan.php?tambah=true");
+            exit; // Pastikan untuk keluar setelah redirect
+        } else {
+            echo "Error: " . $query_detail_pemesanan . "<br>" . $conn->error;
+        }
     } else {
-        echo "Error: " . $query . "<br>" . $conn->error;
+        echo "Error: " . $query_pemesanan . "<br>" . $conn->error;
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -118,14 +123,13 @@ if (isset($_POST["submit"])) {
             <div>
                 <label for="tipe_kamar" class="block text-sm font-medium text-gray-600">Tipe Kamar</label>
                 <select class="w-full p-2 mt-1 border rounded-md" name="tipe_kamar">
-                    <option selected>--Pilih Tipe Kamar--</option>
+                    <option selected disabled>--Pilih Tipe Kamar--</option>
                     <?php
-
                     $querytipe = "SELECT * FROM tipekamar";
                     $resulttipe = $conn->query($querytipe);
                     while ($tipe = $resulttipe->fetch_assoc()) :
                     ?>
-                        <option value="<?= $tipe['tipe_kamar_id'] ?>"><?= $tipe['nama_tipe']. ' - ' .$tipe['harga'] ?></option>
+                        <option value="<?= $tipe['tipe_kamar_id'] ?>"><?= $tipe['nama_tipe'] . ' - ' . $tipe['harga'] ?></option>
                     <?php endwhile; ?>
                 </select>
             </div>
