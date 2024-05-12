@@ -90,11 +90,11 @@
             <h4 class="text-2xl font-bold lg:text-xl">Data Diri</h4>
             <span class="block mb-3 text-sm lg:text-sm">Isi data diri terlebih dahulu dan lakukan pembayaran pemesanan</span><br>
 
-            <input type="hidden" id="hiddenInput" name="localData">
+            <!-- <input type="hidden" id="hiddenInput" name="localData">
             <input type="hidden" id="total" name="total" value="0">
             <input type="hidden" name="name" id="name">
             <input type="hidden" name="quantity" id="quantity">
-            <input type="hidden" name="price" id="price">
+            <input type="hidden" name="price" id="price"> -->
 
             <div class="grid gap-6 mb-6 md:grid-cols-2">
 
@@ -176,28 +176,28 @@
   <!-- akhir data diri -->
 
   <!-- Riwayat -->
-  <button data-modal-target="riwayat" data-modal-toggle="riwayat" class="fixed z-50 p-3 bg-yellow-400 Riwayat w-fit rounded-2xl bottom-24 right-5 opacity-30 hover:opacity-100">
+  <!-- <button data-modal-target="riwayat" data-modal-toggle="riwayat" class="fixed z-50 p-3 bg-yellow-400 Riwayat w-fit rounded-2xl bottom-24 right-5 opacity-30 hover:opacity-100">
     <a href="">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-auto m-auto text-center w-7">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
       <p class="text-xs font-semibold text-center">Riwayat</p>
     </a>
-  </button>
+  </button> -->
   <!-- Riwayat -->
 
 
   <!-- home -->
   <section class="fixed z-50 p-3 bg-yellow-400 home w-fit rounded-2xl bottom-5 right-5 opacity-30 hover:opacity-100">
-    <a href="../index.php">
+    <a href="pemesanan.php">
       <svg role="img" viewBox="0 0 24 24" width="30px" height="20px" class="m-auto" xmlns="http://www.w3.org/2000/svg">
-        <title>Google Home</title>
+        <title>Pemesanan</title>
         <path d="M12 0a1.44 1.44 0 0 0-.947.399L.547 10.762a1.26 1.26 0 0 0-.342.808v11.138c0 .768.53 1.292 1.311 1.292h20.968c.78 0 1.311-.522 1.311-1.292V11.57a1.25 1.25 0 0 0-.34-.804L15.68 3.097h-.001L12.947.4A1.454 1.454 0 0 0 12 0Zm0 6.727 6.552 6.456v5.65H5.446v-5.65z" />
       </svg>
-      <p class="text-xs font-semibold text-center">Home</p>
+      <p class="text-xs font-semibold text-center">Pemesanan</p>
     </a>
   </section>
-  <!-- home -->
+  <!-- pemesanan -->
 
   <!-- footer -->
 
@@ -205,42 +205,6 @@
     <span class="text-sm text-white sm:text-center">© 2024 <a href="https://flowbite.com/" class="hover:underline">Kelompok 4</a>. All Rights Reserved. </span>
   </div>
   <!-- end footer -->
-
-  <!-- modal -->
-  <!-- Main modal -->
-  <div id="riwayat" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative w-full max-w-2xl max-h-full p-4">
-      <!-- Modal content -->
-      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <!-- Modal header -->
-        <div class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-            Static modal
-          </h3>
-          <button type="button" class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="riwayat">
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-            </svg>
-            <span class="sr-only">Close modal</span>
-          </button>
-        </div>
-        <!-- Modal body -->
-        <div class="p-4 space-y-4 md:p-5">
-          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-            With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-          </p>
-          <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-            The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-          </p>
-        </div>
-        <!-- Modal footer -->
-        <div class="flex items-center p-4 text-left border-t border-gray-200 rounded-b md:p-5 dark:border-gray-600">
-          <button data-modal-hide="riwayat" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- akhir modal -->
 
 
   <!-- scriipt payment -->
@@ -255,7 +219,7 @@
   <script src="../src/js/resetCart.js"></script>
   <script src="../src/js/countItem.js"></script>
 
-
+  <!-- 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       const formData = localStorage.getItem('keranjang_');
@@ -294,7 +258,7 @@
         document.getElementById('name').value = JSON.stringify(kamar);
       }
     });
-  </script>
+  </script> -->
 </body>
 
 </html>
