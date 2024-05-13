@@ -61,7 +61,8 @@
         <span class="self-center text-lg font-bold text-yellow-400 lg:text-2xl whitespace-nowrap">Nuansa Nusantara</span>
       </a>
       <div class="flex space-x-3 lg:order-2 lg:space-x-0 rtl:space-x-reverse">
-        <button type="button" class="px-4 py-2 text-sm font-medium text-center text-white bg-yellow-500 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">Cek Booking</button>
+        <button data-modal-target="cek-booking" data-modal-toggle="cek-booking" class="px-2 py-1 text-sm font-medium text-center text-white bg-yellow-500 rounded-lg lg:px-4 lg:py-2 lg:text-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 ">Cek Booking</button>
+
         <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center justify-center w-10 h-10 p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 " aria-controls="navbar-sticky" aria-expanded="false">
           <span class="sr-only">Open main menu</span>
           <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -482,6 +483,8 @@
     </div>
   </footer>
   <!-- end footer -->
+
+  <?php include 'user/modal/cekBooking.php' ?>
 
   <!-- flowbite -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
