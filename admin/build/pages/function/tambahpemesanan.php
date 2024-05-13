@@ -24,9 +24,11 @@ if (isset($_POST["submit"])) {
     // Hitung total harga berdasarkan harga kamar per malam dan jumlah malam menginap
     $total_harga = $harga_kamar * $selisih_hari;
 
-    // Jika fasilitas_plus adalah 'sarapan', tambahkan biaya tambahan sebesar 100.000
+    // Jika fasilitas_plus adalah 'sarapan', tambahkan biaya tambahan sebesar 100.000 per hari
     if ($fasilitas_plus == 'sarapan') {
-        $total_harga += 100000; // Biaya tambahan untuk sarapan
+        $biaya_sarapan_per_hari = 100000;
+        $total_biaya_sarapan = $biaya_sarapan_per_hari * $selisih_hari;
+        $total_harga += $total_biaya_sarapan; // Tambahkan biaya tambahan untuk sarapan
     }
 
     /// Lakukan query SQL untuk memasukkan data ke dalam tabel pemesanan
@@ -48,6 +50,7 @@ if (isset($_POST["submit"])) {
         echo "Error: " . $query_pemesanan . "<br>" . $conn->error;
     }
 }
+
 ?>
 
 

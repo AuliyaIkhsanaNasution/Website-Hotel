@@ -255,8 +255,10 @@ $hasil = $conn->query($query);
                       <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pesan['status_pemesanan'] ?>
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+
                         <a href="function/detailpemesanan.php?id=<?= $pesan['pemesanan_id'] ?>"><i class="material-symbols-outlined">
                         visibility</i></a>
+                        
                         <a href="function/editpemesanan.php?id=<?= $pesan['pemesanan_id'] ?>"><i class="material-icons">edit</i></a>
                         <a href="function/hapuspemesanan.php?id=<?= $pesan['pemesanan_id'] ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
                       </td>

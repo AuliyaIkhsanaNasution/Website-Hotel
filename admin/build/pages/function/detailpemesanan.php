@@ -25,7 +25,7 @@ $hasil = $conn->query($sql);
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuansa Nusantara Hotel</title>
+  <title>Detail Pesanan Nuansa Nusantara Hotel</title>
 
   <!-- tailwind -->
   <link href="./src/output.css" rel="stylesheet" />
@@ -44,55 +44,53 @@ $hasil = $conn->query($sql);
   <script src="https://kit.fontawesome.com/22f19496c5.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="overflow-x-hidden">
-    
+<body class="overflow-x-hidden bg-blue-100">
 
-<div >
-<table class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow">
-                <thead class="align-bottom">
-                  <tr>
-                  <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b  #FFFFFFborder-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">No</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b  #FFFFFFborder-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">Pemesanan ID</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nomor Kamar</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tipe Kamar</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Harga Kamar</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Fasilitas Plus</th>
-                  </tr>
-                </thead>
-                <tbody class="align-center ">
-                <?php 
+  <div class="flex justify-center">
+    <h2 class="text-3xl font-semibold mb-4 mt-8 text-blue-900">Detail Pemesanan</h2>
+  </div>
 
-              $num = 1;
-              while ($detail = $hasil->fetch_assoc()) {
-          ?>
-
-                    <center><tr>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%] "><?= $num ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $detail['pemesanan_id'] ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $detail['nomor_kamar'] ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $detail['nama_tipe'] ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $detail['harga_kamar_per_malam'] ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $detail['fasilitas_plus'] ?>
-                      </td>
-                      
-                    </tr></center>
-
-                    
-
-                    <?php $num++;
-                    
-                  }
-                  ?>
-                </tbody>
-              </table>
+  <div class="flex justify-center">
+  <table class="max-w-sm p-6 bg-gray-100 border border-blue-800 rounded-lg shadow divide-y divide-gray-300">
+    <thead class="align-bottom">
+      <tr class="bg-blue-200">
+        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b  shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">No</th>
+        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">Pemesanan ID</th>
+        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nomor Kamar</th>
+        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tipe Kamar</th>
+        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Harga Kamar</th>
+        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Fasilitas Plus</th>
+      </tr>
+    </thead>
+    <tbody class="align-center">
+      <?php
+      $num = 1;
+      while ($detail = $hasil->fetch_assoc()) {
+      ?>
+        <tr>
+          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $num ?></td>
+          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['pemesanan_id'] ?></td>
+          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['nomor_kamar'] ?></td>
+          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['nama_tipe'] ?></td>
+          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['harga_kamar_per_malam'] ?></td>
+          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['fasilitas_plus'] ?></td>
+        </tr>
+      <?php
+        $num++;
+      }
+      ?>
+    </tbody>
+  </table>
 </div>
 
+
+
+  <div class="flex justify-center mt-8">
+    <a href="../datapemesanan.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Kembali</a>
+  </div>
+
 </body>
+
 
 </html>
 
