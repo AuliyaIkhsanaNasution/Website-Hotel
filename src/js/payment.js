@@ -28,8 +28,65 @@ payButton.addEventListener("click", async function (e) {
     let snapToken = await response.text(); // Mengasumsikan server hanya mengembalikan token sebagai teks sederhana
     snapToken = snapToken.replace(/"/g, "");
 
-    // console.log(snapToken);
-    window.snap.pay(snapToken);
+    // Gunakan token untuk membuka Snap popup
+    window.snap.pay(snapToken, {
+      onSuccess: function (result) {
+        // Melakukan update transaksi terlebih dahulu
+        $.ajax({
+          url: "function/upDatabase.php",
+          type: "POST",
+          data: {
+            nama: document.querySelector('input[name="nama"]').value,
+            email: document.querySelector('input[name="email"]').value,
+            kontak: document.querySelector('input[name="kontak"]').value,
+            alamat: document.querySelector('input[name="alamat"]').value,
+            nik: document.querySelector('input[name="nik"]').value,
+            localData: localStorage.getItem("keranjang_"), // Pastikan untuk mengirim data ini jika diperlukan
+          },
+          dataType: "json",
+          success: function (response) {
+            if (response.success) {
+              Swal.fire({
+                icon: "success",
+                title: "Pembayaran Berhasil",
+                text: "Pembayaran telah dilakukan. Cek pemesanan anda di bagian 'Cek Booking'",
+              }).then((result) => {
+                if (result.value) {
+                  localStorage.removeItem("keranjang_");
+                  location.href = "../index.php";
+                }
+              });
+            } else {
+              Swal.fire("Error", response.message, "error");
+            }
+          },
+          error: function () {
+            Swal.fire("Error", "Tidak dapat terhubung ke server.", "error");
+          },
+        });
+      },
+      onPending: function (result) {
+        Swal.fire({
+          icon: "info",
+          title: "Pembayaran Pending",
+          text: "Silahkan lakukan pembayaran. Jika terjadi kesalahan mulai ulang website",
+        });
+      },
+      onError: function (result) {
+        Swal.fire({
+          icon: "error",
+          title: "Pembayaran Gagal",
+          text: "pembayaran Expired, silahkan lakukan pemesanan dan pembayaran kembali",
+        });
+      },
+      onClose: function () {
+        Swal.fire({
+          icon: "warning",
+          title: "Kamu keluar sebelum melanjutkan pemabayaran",
+          text: "Silahkan lakukan pemesanan dan pembayaran kembali. Jika terjadi kesalahan mulai ulang website",
+        });
+      },
+    });
   } catch (error) {
     console.error(error);
   }

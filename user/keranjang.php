@@ -90,11 +90,7 @@
             <h4 class="text-2xl font-bold lg:text-xl">Data Diri</h4>
             <span class="block mb-3 text-sm lg:text-sm">Isi data diri terlebih dahulu dan lakukan pembayaran pemesanan</span><br>
 
-            <!-- <input type="hidden" id="hiddenInput" name="localData">
-            <input type="hidden" id="total" name="total" value="0">
-            <input type="hidden" name="name" id="name">
-            <input type="hidden" name="quantity" id="quantity">
-            <input type="hidden" name="price" id="price"> -->
+            <!-- <input type="hidden" id="hiddenInput" name="localData"> -->
 
             <div class="grid gap-6 mb-6 md:grid-cols-2">
 
@@ -219,43 +215,14 @@
   <script src="../src/js/resetCart.js"></script>
   <script src="../src/js/countItem.js"></script>
 
-  <!-- 
-  <script>
+
+  <!-- <script>
     document.addEventListener("DOMContentLoaded", function() {
       const formData = localStorage.getItem('keranjang_');
       if (formData) {
         const data = JSON.parse(formData); // Mengubah JSON string kembali menjadi objek
-
-        // Array untuk menyimpan data kamar, tamu, dan total
-        let kamar = [];
-        let tamu = [];
-        let price = []; // Ini akan menyimpan daftar 'total' dari masing-masing item sebagai harga
-
-        // Menghitung total dari semua entri 'total' dalam objek dan mengumpulkan data untuk kamar, tamu, dan price
-        let totalSum = 0;
-        for (const item of data) { // Diasumsikan data adalah array dari objek
-          if (item.kamar) kamar.push(item.kamar); // Menambahkan kamar ke array
-          if (item.tamu) tamu.push(item.tamu); // Menambahkan tamu ke array
-          if (item.total) {
-            price.push(item.total); // Menambahkan total tiap item ke array price
-            totalSum += hidden(item.total); // Menambahkan nilai total setelah memastikan itu adalah angka
-          }
-        }
-
-        // Menampilkan total yang dihitung di input 'total'
-        document.getElementById('total').value = totalSum.toFixed(2); // Menformat total ke dua desimal
-
-        // Menyimpan array dalam format JSON ke input tersembunyi
-        document.getElementById('hiddenInput').value = JSON.stringify({
-          kamar,
-          tamu,
-          price
-        });
-
-        // Menampilkan price sebagai list di input 'price' (misalkan untuk debug atau review)
-        document.getElementById('price').value = JSON.stringify(price);
-        document.getElementById('quantity').value = JSON.stringify(tamu);
-        document.getElementById('name').value = JSON.stringify(kamar);
+        const hiddenInput = document.getElementById('hiddenInput');
+        hiddenInput.value = JSON.stringify(data);
       }
     });
   </script> -->
