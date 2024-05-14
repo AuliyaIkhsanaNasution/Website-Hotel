@@ -1,7 +1,6 @@
 <?php
 require "koneksi.php"; // Mengimport file koneksi.php
 
-// Memanggil apabila tombol submit di klik
 if (isset($_POST["submit"])) {
     // Ambil data dari formulir dengan menggunakan fungsi htmlspecialchars untuk menghindari serangan XSS
     $pemesanan_id = htmlspecialchars($_POST["pemesanan_id"]);
@@ -10,14 +9,11 @@ if (isset($_POST["submit"])) {
     $tanggal_checkin = htmlspecialchars($_POST["tanggal_checkin"]);
     $tanggal_checkout = htmlspecialchars($_POST["tanggal_checkout"]);
     $jumlah_tamu = htmlspecialchars($_POST["jumlah_tamu"]);
-    $status_pemesanan = htmlspecialchars($_POST["status_pemesanan"]);
+    $status_pemesanan = 'proses';
     $kamar = isset($_POST["kamar"]) ? htmlspecialchars($_POST["kamar"]) : '';
     $tipe_kamar = isset($_POST["tipe_kamar"]) ? htmlspecialchars($_POST["tipe_kamar"]) : '';
     $harga_kamar = htmlspecialchars($_POST["harga_kamar"]);
     $fasilitas_plus = htmlspecialchars($_POST["fasilitas_plus"]);
-
-    // Debugging: Tampilkan nilai dari fasilitas_plus
-    echo "Fasilitas Plus: " . $fasilitas_plus . "<br>";
 
     // Hitung selisih hari antara tanggal check-in dan check-out
     $tanggal_checkin_unix = strtotime($tanggal_checkin);
@@ -34,29 +30,77 @@ if (isset($_POST["submit"])) {
         $total_harga += $total_biaya_sarapan; // Tambahkan biaya tambahan untuk sarapan
     }
 
-    // Debugging: Tampilkan query yang akan dijalankan
-    $query_pemesanan = "INSERT INTO pemesanan (pemesanan_id, user_id, tanggal_pesan, tanggal_checkin, tanggal_checkout, jumlah_tamu, total_harga, status_pemesanan) VALUES ('$pemesanan_id', '$nik', '$tanggal_pesan', '$tanggal_checkin', '$tanggal_checkout', '$jumlah_tamu', '$total_harga', '$status_pemesanan')";
-    echo "Query Pemesanan: " . $query_pemesanan . "<br>";
+    // Memulai transaksi
+    $conn->begin_transaction();
 
-    // Lakukan query untuk memasukkan data pemesanan
-    if ($conn->query($query_pemesanan) === TRUE) {
-        $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
-        echo "Query Detail Pemesanan: " . $query_detail_pemesanan . "<br>";
+    try {
+        // Lakukan query untuk memasukkan data pemesanan
+        $query_pemesanan = "INSERT INTO pemesanan (pemesanan_id, user_id, tanggal_pesan, tanggal_checkin, tanggal_checkout, jumlah_tamu, total_harga, status_pemesanan) VALUES ('$pemesanan_id', '$nik', '$tanggal_pesan', '$tanggal_checkin', '$tanggal_checkout', '$jumlah_tamu', '$total_harga', '$status_pemesanan')";
+        if (!$conn->query($query_pemesanan)) {
+            throw new Exception("Error: " . $query_pemesanan . " " . $conn->error);
+        }
 
         // Lakukan query untuk memasukkan data detail pemesanan
-        if ($conn->query($query_detail_pemesanan) === TRUE) {
-            header("location: ../datapemesanan.php?tambah=true");
-            exit; // Pastikan untuk keluar setelah redirect
-        } else {
-            echo "Error: " . $query_detail_pemesanan . "<br>" . $conn->error;
+        $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
+        if (!$conn->query($query_detail_pemesanan)) {
+            throw new Exception("Error: " . $query_detail_pemesanan . " " . $conn->error);
         }
-    } else {
-        echo "Error: " . $query_pemesanan . "<br>" . $conn->error;
+
+        // Memeriksa apakah booking_date ada di tabel kamar
+        $checkKamarSql = "SELECT booking_date FROM kamar WHERE kamar_id = '$kamar'";
+        $checkKamarResult = $conn->query($checkKamarSql);
+        if (!$checkKamarResult) {
+            throw new Exception("Error: " . $checkKamarSql . " " . $conn->error);
+        }
+
+        $checkKamar = $checkKamarResult->fetch_assoc();
+        $kamarArr = [];
+        $checkin = new DateTime($tanggal_checkin);
+        $checkout = new DateTime($tanggal_checkout);
+
+        // Jika booking_date null, masukkan tanggal baru
+        if (is_null($checkKamar['booking_date'])) {
+            // Looping untuk menghasilkan interval tanggal
+            for ($date = clone $checkin; $date < $checkout; $date->modify('+1 day')) {
+                $kamarArr[] = $date->format('Y-m-d');
+            }
+        } else {
+            // Ambil data booking_date dan decode JSON
+            $array = json_decode($checkKamar['booking_date'], true);
+            if (!is_array($array)) {
+                throw new Exception("Error decoding booking_date JSON");
+            }
+
+            // Looping untuk menambahkan interval tanggal
+            for ($date = clone $checkin; $date < $checkout; $date->modify('+1 day')) {
+                $array[] = $date->format('Y-m-d');
+            }
+            $kamarArr = $array;
+        }
+
+        // Ubah array ke JSON string dan update ketersediaan kamar
+        $booking_date = json_encode($kamarArr);
+        $updateKamarSql = "UPDATE kamar SET booking_date = '$booking_date' WHERE kamar_id = '$kamar'";
+        if (!$conn->query($updateKamarSql)) {
+            throw new Exception("Error: " . $updateKamarSql . " " . $conn->error);
+        }
+
+        // Commit transaksi jika semua berhasil
+        $conn->commit();
+        header("Location: ../datapemesanan.php?tambah=true");
+        exit;
+
+    } catch (Exception $e) {
+        // Rollback transaksi jika ada error
+        $conn->rollback();
+        echo "Failed: " . $e->getMessage();
     }
+
+    // Menutup koneksi
+    $conn->close();
 }
-
-
 ?>
+
 
 
 
@@ -97,10 +141,6 @@ if (isset($_POST["submit"])) {
                 </select>
             </div>
             <div>
-                <label for="tanggal_pesan" class="block text-sm font-medium text-gray-600">Tanggal Pesan</label>
-                <input type="text" id="tanggal_pesan" name="tanggal_pesan"  class="w-full p-2 mt-1 border rounded-md" required value="<?php echo date('d-m-Y'); ?>">
-            </div>
-            <div>
                 <label for="tanggal_checkin" class="block text-sm font-medium text-gray-600">Tanggal Check-In Customer</label>
                 <input type="date" id="tanggal_checkin" name="tanggal_checkin" placeholder="" class="w-full p-2 mt-1 border rounded-md">
             </div>
@@ -113,24 +153,8 @@ if (isset($_POST["submit"])) {
                 <input type="number" name="jumlah_tamu" id="jumlah_tamu" placeholder="2" min="1" max="2" class="w-full p-2 mt-1 border rounded-md" required><br>
             </div>
             <div>
-                <label for="kamar" class="block text-sm font-medium text-gray-600">Kamar</label>
-                <select class="w-full p-2 mt-1 border rounded-md" name="kamar">
-                    <option selected>--Pilih kamar--</option>
-                    <?php
-
-                    $querykmr = "SELECT kamar.kamar_id, kamar.nomor_kamar, tipekamar.slug AS slug 
-                    FROM kamar 
-                    INNER JOIN tipekamar ON kamar.tipe_kamar_id = tipekamar.tipe_kamar_id";
-                    $resultkmr = $conn->query($querykmr);
-                    while ($kmr = $resultkmr->fetch_assoc()) :
-                    ?>
-                        <option value="<?= $kmr['kamar_id'] ?>"><?= $kmr['nomor_kamar'] . ' - ' .$kmr['slug'] ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div>
                 <label for="tipe_kamar" class="block text-sm font-medium text-gray-600">Tipe Kamar</label>
-                <select class="w-full p-2 mt-1 border rounded-md" name="tipe_kamar">
+                <select id="tipekamar" class="w-full p-2 mt-1 border rounded-md" name="tipe_kamar">
                     <option selected disabled>--Pilih Tipe Kamar--</option>
                     <?php
                     $querytipe = "SELECT * FROM tipekamar";
@@ -141,6 +165,10 @@ if (isset($_POST["submit"])) {
                     <?php endwhile; ?>
                 </select>
             </div>
+            <div><label for="tipe_kamar" class="block text-sm font-medium text-gray-600">Nomor Kamar</label></div>
+            <div id="showdata">
+            </div>
+
             <div>
                 <label for="harga_kamar" class="block text-sm font-medium text-gray-600">Harga Kamar Per Malam</label>
                 <input type="number" name="harga_kamar" id="harga_kamar" placeholder="700000" class="w-full p-2 mt-1 border rounded-md" required><br>
@@ -152,16 +180,6 @@ if (isset($_POST["submit"])) {
                 <option selected>--Pilih Fasilitas Plus--</option>
                     <option value="sarapan">Sarapan</option>
                     <option value="tidak_sarapan">Tidak Sarapan</option>
-                </select><br>
-            </div>
-            <div>
-                <label for="status_pemesanan" class="block text-sm font-medium text-gray-600">Status Pemesanan:</label>
-                <select name="status_pemesanan" class="w-full p-2 mt-1 border rounded-md" required>
-                <option selected>--Pilih status--</option>
-                    <option value="dikonfirmasi">Dikonfirmasi</option>
-                    <option value="batal">Batal</option>
-                    <option value="selesai">Selesai</option>
-                    <option value="proses">Proses</option>
                 </select><br>
             </div>
 
@@ -194,6 +212,33 @@ if (isset($_POST["submit"])) {
         formatDateInput('tanggal_checkout');
     };
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#tipekamar").change(function() {
+            var tipekamarId = $(this).val();
+
+            if (tipekamarId != "") {
+                $.ajax({
+                    type: "get",
+                    url: "ambilkamar.php",
+                    data: {
+                        tipekamarId: tipekamarId
+                    },
+                    cache: false,
+                    success: function(response) {
+                        $('#showdata').html(response);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr);
+                    }
+                });
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>

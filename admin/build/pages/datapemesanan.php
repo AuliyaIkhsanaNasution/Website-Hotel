@@ -260,10 +260,13 @@ $hasil = $conn->query($query);
                       
                       <?php if ($pesan['status_pemesanan'] == 'proses') { ?>
                           <a class="button block items-center px-4 py-2 bg-green-500 text-white text-sm font-medium rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=dikonfirmasi">Checkin</a>
-                          <a class="button block items-center px-4 py-2 bg-red-500 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=batal">Batal</a>
+                          <a class="button block items-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=batal">Batal</a>
                       <?php } elseif ($pesan['status_pemesanan'] == 'dikonfirmasi') { ?>
                           <a class="button block items-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=selesai">Checkout</a>
                       <?php } ?>
+
+                      <a class=" button block items-center px-4 py-2 bg-red-500 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" href="function/hapuspemesanan.php?id=<?= htmlspecialchars($pesan['pemesanan_id']) ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');">Hapus</a>
+
                     </tr></center>
 
                     <?php $num++;
