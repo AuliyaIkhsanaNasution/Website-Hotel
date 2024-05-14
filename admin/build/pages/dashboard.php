@@ -1,3 +1,6 @@
+<?php 
+require "function/koneksi.php";
+?>
 
 <!DOCTYPE html>
 <html>
@@ -162,17 +165,23 @@
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
+                    <?php
+                    $jumlahkamar = "SELECT COUNT(*) AS jumlah_kamar FROM kamar";
+                    $kamar = $conn->query($jumlahkamar);
+                    while ($kmr = $kamar->fetch_assoc()) :
+                    ?>
                       <p class="mb-0 font-sans  text-lg font-semibold leading-normal uppercase ">Kamar Hotel</p>
                       <h5 class="mb-2 ">*total kamar</h5>
                       <p class="mb-0 ">
-                        <span class=" text-lg font-bold leading-normal text-emerald-500">50</span>
-                        kamar
+                        <span class=" text-lg font-bold leading-normal text-blue-500 "><?= $kmr['jumlah_kamar'] ?> kamar</span>
+                        
                       </p>
+                      <?php endwhile; ?>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
                     <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-blue-500 to-violet-500">
-                      <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
+                      <i class="ni leading-none ni-building text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
                 </div>
@@ -188,17 +197,23 @@
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
-                      <p class="mb-6 font-sans text-lg font-semibold leading-normal uppercase "> Pelanggan</p>
-                      <h5 class="mb-1 ">___________</h5>
+                    <?php
+                    $jumlahcustomer = "SELECT COUNT(*) AS jumlah_customer FROM user";
+                    $customer = $conn->query($jumlahcustomer);
+                    while ($use = $customer->fetch_assoc()) :
+                    ?>
+                      <p class=" font-sans text-lg font-semibold leading-normal uppercase ">Customer</p>
+                      <h5 class=" ">*total Customer Memesan Kamar</h5>
                       <p class="mb-0 ">
-                        <span class="mt-1 inline-block text-lg font-bold leading-normal text-emerald-500">30</span>
-                        Orang
+                        <span class="mt-3 inline-block text-lg font-bold leading-normal text-red-600"><?= $use['jumlah_customer'] ?> Orang</span>
+                        
                       </p>
+                      <?php endwhile; ?>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
                     <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-red-600 to-orange-600">
-                      <i class="ni leading-none ni-world text-lg relative top-3.5 text-white"></i>
+                      <i class="ni leading-none ni-circle-08 text-2xl relative top-3.5 text-white"></i>
                     </div>
                   </div>
                 </div>
@@ -213,16 +228,22 @@
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
+                    <?php
+                    $jumlahuang = "SELECT SUM(total_harga) AS total_jumlah_harga FROM pemesanan";
+                    $uang = $conn->query($jumlahuang);
+                    while ($u = $uang->fetch_assoc()) :
+                    ?>
                       <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase ">Total Uang Masuk</p>
-                      <h5 class="mb-3 font-bold text-teal-600"></h5>
+                      <h5 class="">*total Uang Pemesanan Hotel</h5>
                       <p class="mb-0 ">
-                        <span class="mt-6 inline-block text-lg font-bold leading-normal text-teal-500">Rp.670.000</span>
+                        <span class=" inline-block text-lg font-bold leading-normal text-teal-500">Rp. <?= number_format($u['total_jumlah_harga'], 0, ',', '.'); ?></span>
                       </p>
+                      <?php endwhile; ?>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
                     <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-teal-500 to-teal-500">
-                      <i class="ni leading-none ni-paper-diploma text-lg relative top-3.5 text-white"></i>
+                      <i class="ni leading-none ni-money-coins text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
                 </div>
@@ -237,16 +258,22 @@
                 <div class="flex flex-row -mx-3">
                   <div class="flex-none w-2/3 max-w-full px-3">
                     <div>
+                    <?php
+                    $jumlahpegawai = "SELECT COUNT(*) AS jumlah_pegawai FROM pegawai";
+                    $pegawai = $conn->query($jumlahpegawai);
+                    while ($peg = $pegawai->fetch_assoc()) :
+                    ?>
                       <p class="mb-0 font-sans text-sm font-semibold leading-normal uppercase ">Total Pegawai</p>
-                      <h5 class="mb-3 font-bold text-yellow-600"></h5>
+                      <h5 class="">*total Pegawai Hotel</h5>
                       <p class="mb-0 ">
-                        <span class="mt-10 inline-block text-lg font-bold leading-normal text-yellow-500">30 orang</span>
+                        <span class="mt-5 inline-block text-lg font-bold leading-normal text-yellow-500"><?= $peg['jumlah_pegawai'] ?> orang</span>
                       </p>
+                      <?php endwhile; ?>
                     </div>
                   </div>
                   <div class="px-3 text-right basis-1/3">
                     <div class="inline-block w-12 h-12 text-center rounded-circle bg-gradient-to-tl from-orange-500 to-yellow-500">
-                      <i class="ni leading-none ni-cart text-lg relative top-3.5 text-white"></i>
+                      <i class="ni leading-none ni-active-40 text-lg relative top-3.5 text-white"></i>
                     </div>
                   </div>
                 </div>

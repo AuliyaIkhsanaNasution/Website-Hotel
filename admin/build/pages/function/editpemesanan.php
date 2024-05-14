@@ -42,7 +42,7 @@ if (isset($_POST["ubah"])) {
     echo "Total Harga sebelum Biaya Tambahan: " . $total_harga . "<br>";
 
     // Jika fasilitas_plus adalah 'sarapan', tambahkan biaya tambahan sebesar 100.000 per hari
-    if ($fasilitas_plus == 'sarapan') {
+    if ($fasilitas_plus == 'Sarapan') {
         $biaya_sarapan_per_hari = 100000;
         $total_biaya_sarapan = $biaya_sarapan_per_hari * $selisih_hari;
         $total_harga += $total_biaya_sarapan; // Tambahkan biaya tambahan untuk sarapan
@@ -171,7 +171,7 @@ if (isset($_POST["ubah"])) {
                 <label for="fasilitas_plus" class="block text-sm font-medium text-gray-600">Fasilitas Plus</label>
                 <select name="fasilitas_plus" class="w-full p-2 mt-1 border rounded-md" required>
                     <option selected value="<?= $edit['fasilitas_plus'] ?>"><?= $edit['fasilitas_plus'] ?></option>
-                    <option value="sarapan">Sarapan</option>
+                    <option value="Sarapan">Sarapan</option>
                     <option value="tidak_sarapan">Tidak Sarapan</option>
                 </select><br>
             </div>
