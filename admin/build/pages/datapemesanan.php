@@ -256,12 +256,14 @@ $hasil = $conn->query($query);
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
 
-                        <a href="function/detailpemesanan.php?id=<?= $pesan['pemesanan_id'] ?>"><i class="material-symbols-outlined">
-                        visibility</i></a>
-                        
-                        <a href="function/editpemesanan.php?id=<?= $pesan['pemesanan_id'] ?>"><i class="material-icons">edit</i></a>
-                        <a href="function/hapuspemesanan.php?id=<?= $pesan['pemesanan_id'] ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');"><i class="material-icons">delete</i></a>
-                      </td>
+                      <a class=" button block items-center px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" href="function/detailpemesanan.php?id=<?= htmlspecialchars($pesan['pemesanan_id']) ?>">Detail</a>
+                      
+                      <?php if ($pesan['status_pemesanan'] == 'proses') { ?>
+                          <a class="button block items-center px-4 py-2 bg-green-500 text-white text-sm font-medium rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=dikonfirmasi">Checkin</a>
+                          <a class="button block items-center px-4 py-2 bg-red-500 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=batal">Batal</a>
+                      <?php } elseif ($pesan['status_pemesanan'] == 'dikonfirmasi') { ?>
+                          <a class="button block items-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=selesai">Checkout</a>
+                      <?php } ?>
                     </tr></center>
 
                     <?php $num++;

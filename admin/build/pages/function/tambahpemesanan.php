@@ -40,7 +40,7 @@ if (isset($_POST["submit"])) {
 
     // Lakukan query untuk memasukkan data pemesanan
     if ($conn->query($query_pemesanan) === TRUE) {
-        $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar_id, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
+        $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
         echo "Query Detail Pemesanan: " . $query_detail_pemesanan . "<br>";
 
         // Lakukan query untuk memasukkan data detail pemesanan

@@ -12,12 +12,12 @@ if (isset($_POST["ubah"])) {
     $kamar_id = htmlspecialchars($_POST['kamar_id']);
     $nomor_kamar = htmlspecialchars($_POST['nomor_kamar']);
     $nama_tipe = htmlspecialchars($_POST['nama_tipe']);
-    $booking = htmlspecialchars($_POST['booking']);
+    $booking_date = '[]';
 
     $query = "UPDATE kamar SET
     nomor_kamar = '$nomor_kamar',
     tipe_kamar_id = '$nama_tipe',
-    booking_date = '$booking'
+    booking_date = '$booking_date'
 WHERE kamar_id = '$kamar_id'";
 
 if (mysqli_query($conn, $query) === TRUE) {
@@ -73,10 +73,7 @@ if (mysqli_query($conn, $query) === TRUE) {
                     <?php endwhile; ?>
                 </select>
             </div>
-            <div>
-                <label for="booking" class="block text-sm font-medium text-gray-600">Booking Date</label>
-                <input type="text" id="bookingr" name="booking" placeholder="tersedia/tidak" class="w-full p-2 mt-1 border rounded-md" value="<?php echo $kmr['booking_date']; ?>" required>
-            </div>
+
             <div>
                 <button type="submit" name="ubah" class="w-full p-2 text-white bg-blue-700 rounded-md hover:bg-blue-300">Simpan</button>
             </div>

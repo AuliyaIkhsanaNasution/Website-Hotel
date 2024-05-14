@@ -23,7 +23,7 @@ pemesanan ON detailpemesanan.pemesanan_id = pemesanan.pemesanan_id
 JOIN 
 kamar ON detailpemesanan.kamar_id = kamar.kamar_id
 JOIN 
-tipekamar ON detailpemesanan.tipe_kamar_id = tipekamar.tipe_kamar_id
+tipekamar ON detailpemesanan.tipe_kamar = tipekamar.tipe_kamar_id
 JOIN 
 user ON pemesanan.user_id = user.user_id  -- Join dengan tabel user
 WHERE 

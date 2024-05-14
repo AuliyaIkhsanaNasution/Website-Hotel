@@ -6,7 +6,7 @@ if (isset($_POST["submit"])) {
     $kamar_id = htmlspecialchars($_POST['kamar_id']);
     $nomor_kamar = htmlspecialchars($_POST['nomor_kamar']);
     $nama_tipe = htmlspecialchars($_POST['nama_tipe']);
-    $booking = htmlspecialchars($_POST['booking']);
+    $booking_date = '[]';
 
     // pengecekan username apakah ada di database
     $result = mysqli_query($conn, "SELECT kamar_id FROM kamar WHERE kamar_id='$kamar_id'");
@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
         exit;
     }
 
-    $query = "INSERT INTO kamar VALUES ('$kamar_id', '$nomor_kamar', '$nama_tipe', '$booking')";
+    $query = "INSERT INTO kamar VALUES ('$kamar_id', '$nomor_kamar', '$nama_tipe', '$booking_date')";
 
     if ($conn->query($query) === TRUE) {
         header("location: ../datakamar.php?tambah=true");
@@ -67,10 +67,7 @@ if (isset($_POST["submit"])) {
                     <?php endwhile; ?>
                 </select>
             </div>
-            <div>
-                <label for="booking" class="block text-sm font-medium text-gray-600">Booking Date</label>
-                <input type="text" id="bookingr" name="booking" placeholder="tersedia/tidak" class="w-full p-2 mt-1 border rounded-md">
-            </div>
+
             <div>
                 <button type="submit" name="submit" class="w-full p-2 text-white bg-blue-700 rounded-md hover:bg-blue-300">Simpan</button>
             </div>
