@@ -4,13 +4,30 @@ require "koneksi.php";
 $detail_pemesanan_id = $_GET["id"];
 
 // query data user berdasarka id
-$sql = "SELECT pemesanan.pemesanan_id, kamar.nomor_kamar, tipekamar.nama_tipe, detailpemesanan.harga_kamar_per_malam, detailpemesanan.fasilitas_plus
-FROM detailpemesanan
-JOIN pemesanan ON detailpemesanan.pemesanan_id = pemesanan.pemesanan_id
-JOIN kamar ON detailpemesanan.kamar_id = kamar.kamar_id
-JOIN tipekamar ON detailpemesanan.tipe_kamar_id = tipekamar.tipe_kamar_id
-WHERE pemesanan.pemesanan_id = '$detail_pemesanan_id';
-";
+$sql = "SELECT 
+pemesanan.pemesanan_id, 
+kamar.nomor_kamar, 
+tipekamar.nama_tipe, 
+detailpemesanan.harga_kamar_per_malam, 
+detailpemesanan.fasilitas_plus,
+user.nama AS nama_user,
+user.nik,  -- Mengambil nama dari tabel user
+pemesanan.tanggal_checkin,  -- Mengambil tanggal check-in dari tabel pemesanan
+pemesanan.tanggal_checkout,  -- Mengambil tanggal check-out dari tabel pemesanan
+pemesanan.jumlah_tamu,  -- Mengambil jumlah tamu dari tabel pemesanan
+pemesanan.total_harga  -- Mengambil total harga dari tabel pemesanan
+FROM 
+detailpemesanan
+JOIN 
+pemesanan ON detailpemesanan.pemesanan_id = pemesanan.pemesanan_id
+JOIN 
+kamar ON detailpemesanan.kamar_id = kamar.kamar_id
+JOIN 
+tipekamar ON detailpemesanan.tipe_kamar_id = tipekamar.tipe_kamar_id
+JOIN 
+user ON pemesanan.user_id = user.user_id  -- Join dengan tabel user
+WHERE 
+pemesanan.pemesanan_id = '$detail_pemesanan_id'";
 $hasil = $conn->query($sql);
 ?>
 
@@ -50,42 +67,79 @@ $hasil = $conn->query($sql);
     <h2 class="text-3xl font-semibold mb-4 mt-8 text-blue-900">Detail Pemesanan</h2>
   </div>
 
-  <div class="flex justify-center">
-  <table class="max-w-sm p-6 bg-gray-100 border border-blue-800 rounded-lg shadow divide-y divide-gray-300">
-    <thead class="align-bottom">
-      <tr class="bg-blue-200">
-        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b  shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">No</th>
-        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">Pemesanan ID</th>
-        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nomor Kamar</th>
-        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tipe Kamar</th>
-        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Harga Kamar</th>
-        <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Fasilitas Plus</th>
-      </tr>
-    </thead>
-    <tbody class="align-center">
-      <?php
+<?php
       $num = 1;
       while ($detail = $hasil->fetch_assoc()) {
       ?>
-        <tr>
-          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $num ?></td>
-          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['pemesanan_id'] ?></td>
-          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['nomor_kamar'] ?></td>
-          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['nama_tipe'] ?></td>
-          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['harga_kamar_per_malam'] ?></td>
-          <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap  text-center"><?= $detail['fasilitas_plus'] ?></td>
-        </tr>
-      <?php
+
+ <center> 
+<a href="#" class="block max-w-5xl p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 mb-6 ">
+
+<div class="grid gap-6 mb-6 md:grid-cols-2">
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">ID Pemesanan</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['pemesanan_id'] ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">NIK Customer</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['nik'] ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Nama Customer</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['nama_user'] ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Nomor Kamar</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['nomor_kamar'] ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Tipe Kamar</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['nama_tipe'] ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Fasilitas Tambahan</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['fasilitas_plus'] ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Harga Kamar Per Malam</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['harga_kamar_per_malam'] ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Tanggal Check-In</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= date('d-m-Y', strtotime($detail['tanggal_checkin'])) ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Tanggal Check-Out</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= date('d-m-Y', strtotime($detail['tanggal_checkout'])) ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Jumlah Tamu Per Kamar</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['jumlah_tamu'] ?>">
+</div>
+
+<div class="mb-6">
+    <label for="default-input" class="block mb-2 text-xl  font-semibold text-blue-900 text-left ">Total Harga</label>
+    <input type="text" id="default-input" class="bg-gray-100 border border-blue-900 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " readonly value="<?= $detail['total_harga'] ?>">
+</div>
+</div>
+</a>
+</center>
+
+<?php
         $num++;
       }
       ?>
-    </tbody>
-  </table>
-</div>
 
-
-
-  <div class="flex justify-center mt-8">
+<div class="flex justify-center mt-5 mb-3">
     <a href="../datapemesanan.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Kembali</a>
   </div>
 
