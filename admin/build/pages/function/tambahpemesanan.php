@@ -1,104 +1,104 @@
 <?php
 require "koneksi.php"; // Mengimport file koneksi.php
 
-if (isset($_POST["submit"])) {
-    // Ambil data dari formulir dengan menggunakan fungsi htmlspecialchars untuk menghindari serangan XSS
-    $pemesanan_id = htmlspecialchars($_POST["pemesanan_id"]);
-    $nik = htmlspecialchars($_POST["nik"]);
-    $tanggal_pesan = date('Y-m-d');
-    $tanggal_checkin = htmlspecialchars($_POST["tanggal_checkin"]);
-    $tanggal_checkout = htmlspecialchars($_POST["tanggal_checkout"]);
-    $jumlah_tamu = htmlspecialchars($_POST["jumlah_tamu"]);
-    $status_pemesanan = 'proses';
-    $kamar = isset($_POST["kamar"]) ? htmlspecialchars($_POST["kamar"]) : '';
-    $tipe_kamar = isset($_POST["tipe_kamar"]) ? htmlspecialchars($_POST["tipe_kamar"]) : '';
-    $harga_kamar = htmlspecialchars($_POST["harga_kamar"]);
-    $fasilitas_plus = htmlspecialchars($_POST["fasilitas_plus"]);
+// if (isset($_POST["submit"])) {
+//     // Ambil data dari formulir dengan menggunakan fungsi htmlspecialchars untuk menghindari serangan XSS
+//     $pemesanan_id = htmlspecialchars($_POST["pemesanan_id"]);
+//     $nik = htmlspecialchars($_POST["nik"]);
+//     $tanggal_pesan = date('Y-m-d');
+//     $tanggal_checkin = htmlspecialchars($_POST["tanggal_checkin"]);
+//     $tanggal_checkout = htmlspecialchars($_POST["tanggal_checkout"]);
+//     $jumlah_tamu = htmlspecialchars($_POST["jumlah_tamu"]);
+//     $status_pemesanan = 'proses';
+//     $kamar = isset($_POST["kamar"]) ? htmlspecialchars($_POST["kamar"]) : '';
+//     $tipe_kamar = isset($_POST["tipe_kamar"]) ? htmlspecialchars($_POST["tipe_kamar"]) : '';
+//     $harga_kamar = htmlspecialchars($_POST["harga_kamar"]);
+//     $fasilitas_plus = htmlspecialchars($_POST["fasilitas_plus"]);
 
-    // Hitung selisih hari antara tanggal check-in dan check-out
-    $tanggal_checkin_unix = strtotime($tanggal_checkin);
-    $tanggal_checkout_unix = strtotime($tanggal_checkout);
-    $selisih_hari = ($tanggal_checkout_unix - $tanggal_checkin_unix) / (60 * 60 * 24);
+//     // Hitung selisih hari antara tanggal check-in dan check-out
+//     $tanggal_checkin_unix = strtotime($tanggal_checkin);
+//     $tanggal_checkout_unix = strtotime($tanggal_checkout);
+//     $selisih_hari = ($tanggal_checkout_unix - $tanggal_checkin_unix) / (60 * 60 * 24);
 
-    // Hitung total harga berdasarkan harga kamar per malam dan jumlah malam menginap
-    $total_harga = $harga_kamar * $selisih_hari;
+//     // Hitung total harga berdasarkan harga kamar per malam dan jumlah malam menginap
+//     $total_harga = $harga_kamar * $selisih_hari;
 
-    // Jika fasilitas_plus adalah 'sarapan', tambahkan biaya tambahan sebesar 100.000 per hari
-    if ($fasilitas_plus == 'sarapan') {
-        $biaya_sarapan_per_hari = 100000;
-        $total_biaya_sarapan = $biaya_sarapan_per_hari * $selisih_hari;
-        $total_harga += $total_biaya_sarapan; // Tambahkan biaya tambahan untuk sarapan
-    }
+//     // Jika fasilitas_plus adalah 'sarapan', tambahkan biaya tambahan sebesar 100.000 per hari
+//     if ($fasilitas_plus == 'sarapan') {
+//         $biaya_sarapan_per_hari = 100000;
+//         $total_biaya_sarapan = $biaya_sarapan_per_hari * $selisih_hari;
+//         $total_harga += $total_biaya_sarapan; // Tambahkan biaya tambahan untuk sarapan
+//     }
 
-    // Memulai transaksi
-    $conn->begin_transaction();
+//     // Memulai transaksi
+//     $conn->begin_transaction();
 
-    try {
-        // Lakukan query untuk memasukkan data pemesanan
-        $query_pemesanan = "INSERT INTO pemesanan (pemesanan_id, user_id, tanggal_pesan, tanggal_checkin, tanggal_checkout, jumlah_tamu, total_harga, status_pemesanan) VALUES ('$pemesanan_id', '$nik', '$tanggal_pesan', '$tanggal_checkin', '$tanggal_checkout', '$jumlah_tamu', '$total_harga', '$status_pemesanan')";
-        if (!$conn->query($query_pemesanan)) {
-            throw new Exception("Error: " . $query_pemesanan . " " . $conn->error);
-        }
+//     try {
+//         // Lakukan query untuk memasukkan data pemesanan
+//         $query_pemesanan = "INSERT INTO pemesanan (pemesanan_id, user_id, tanggal_pesan, tanggal_checkin, tanggal_checkout, jumlah_tamu, total_harga, status_pemesanan) VALUES ('$pemesanan_id', '$nik', '$tanggal_pesan', '$tanggal_checkin', '$tanggal_checkout', '$jumlah_tamu', '$total_harga', '$status_pemesanan')";
+//         if (!$conn->query($query_pemesanan)) {
+//             throw new Exception("Error: " . $query_pemesanan . " " . $conn->error);
+//         }
 
-        // Lakukan query untuk memasukkan data detail pemesanan
-        $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
-        if (!$conn->query($query_detail_pemesanan)) {
-            throw new Exception("Error: " . $query_detail_pemesanan . " " . $conn->error);
-        }
+//         // Lakukan query untuk memasukkan data detail pemesanan
+//         $query_detail_pemesanan = "INSERT INTO detailpemesanan (pemesanan_id, kamar_id, tipe_kamar, harga_kamar_per_malam, fasilitas_plus) VALUES ('$pemesanan_id', '$kamar', '$tipe_kamar', '$harga_kamar', '$fasilitas_plus')";
+//         if (!$conn->query($query_detail_pemesanan)) {
+//             throw new Exception("Error: " . $query_detail_pemesanan . " " . $conn->error);
+//         }
 
-        // Memeriksa apakah booking_date ada di tabel kamar
-        $checkKamarSql = "SELECT booking_date FROM kamar WHERE kamar_id = '$kamar'";
-        $checkKamarResult = $conn->query($checkKamarSql);
-        if (!$checkKamarResult) {
-            throw new Exception("Error: " . $checkKamarSql . " " . $conn->error);
-        }
+//         // Memeriksa apakah booking_date ada di tabel kamar
+//         $checkKamarSql = "SELECT booking_date FROM kamar WHERE kamar_id = '$kamar'";
+//         $checkKamarResult = $conn->query($checkKamarSql);
+//         if (!$checkKamarResult) {
+//             throw new Exception("Error: " . $checkKamarSql . " " . $conn->error);
+//         }
 
-        $checkKamar = $checkKamarResult->fetch_assoc();
-        $kamarArr = [];
-        $checkin = new DateTime($tanggal_checkin);
-        $checkout = new DateTime($tanggal_checkout);
+//         $checkKamar = $checkKamarResult->fetch_assoc();
+//         $kamarArr = [];
+//         $checkin = new DateTime($tanggal_checkin);
+//         $checkout = new DateTime($tanggal_checkout);
 
-        // Jika booking_date null, masukkan tanggal baru
-        if (is_null($checkKamar['booking_date'])) {
-            // Looping untuk menghasilkan interval tanggal
-            for ($date = clone $checkin; $date < $checkout; $date->modify('+1 day')) {
-                $kamarArr[] = $date->format('Y-m-d');
-            }
-        } else {
-            // Ambil data booking_date dan decode JSON
-            $array = json_decode($checkKamar['booking_date'], true);
-            if (!is_array($array)) {
-                throw new Exception("Error decoding booking_date JSON");
-            }
+//         // Jika booking_date null, masukkan tanggal baru
+//         if (is_null($checkKamar['booking_date'])) {
+//             // Looping untuk menghasilkan interval tanggal
+//             for ($date = clone $checkin; $date < $checkout; $date->modify('+1 day')) {
+//                 $kamarArr[] = $date->format('Y-m-d');
+//             }
+//         } else {
+//             // Ambil data booking_date dan decode JSON
+//             $array = json_decode($checkKamar['booking_date'], true);
+//             if (!is_array($array)) {
+//                 throw new Exception("Error decoding booking_date JSON");
+//             }
 
-            // Looping untuk menambahkan interval tanggal
-            for ($date = clone $checkin; $date < $checkout; $date->modify('+1 day')) {
-                $array[] = $date->format('Y-m-d');
-            }
-            $kamarArr = $array;
-        }
+//             // Looping untuk menambahkan interval tanggal
+//             for ($date = clone $checkin; $date < $checkout; $date->modify('+1 day')) {
+//                 $array[] = $date->format('Y-m-d');
+//             }
+//             $kamarArr = $array;
+//         }
 
-        // Ubah array ke JSON string dan update ketersediaan kamar
-        $booking_date = json_encode($kamarArr);
-        $updateKamarSql = "UPDATE kamar SET booking_date = '$booking_date' WHERE kamar_id = '$kamar'";
-        if (!$conn->query($updateKamarSql)) {
-            throw new Exception("Error: " . $updateKamarSql . " " . $conn->error);
-        }
+//         // Ubah array ke JSON string dan update ketersediaan kamar
+//         $booking_date = json_encode($kamarArr);
+//         $updateKamarSql = "UPDATE kamar SET booking_date = '$booking_date' WHERE kamar_id = '$kamar'";
+//         if (!$conn->query($updateKamarSql)) {
+//             throw new Exception("Error: " . $updateKamarSql . " " . $conn->error);
+//         }
 
-        // Commit transaksi jika semua berhasil
-        $conn->commit();
-        header("Location: ../datapemesanan.php?tambah=true");
-        exit;
+//         // Commit transaksi jika semua berhasil
+//         $conn->commit();
+//         header("Location: ../datapemesanan.php?tambah=true");
+//         exit;
 
-    } catch (Exception $e) {
-        // Rollback transaksi jika ada error
-        $conn->rollback();
-        echo "Failed: " . $e->getMessage();
-    }
+//     } catch (Exception $e) {
+//         // Rollback transaksi jika ada error
+//         $conn->rollback();
+//         echo "Failed: " . $e->getMessage();
+//     }
 
-    // Menutup koneksi
-    $conn->close();
-}
+//     // Menutup koneksi
+//     $conn->close();
+// }
 ?>
 
 
@@ -122,11 +122,7 @@ if (isset($_POST["submit"])) {
     <div class="max-w-xl p-8 mx-auto bg-yellow-100 rounded shadow-md outline outline-2 outline-offset-2 outline-yellow-500">
         <h2 class="mb-3 text-2xl font-bold text-center text-slate-600 ">Tambah Data Pemesanan</h2>
         <h6 class="mb-5 text-sm text-slate-500 ">*harap isi Data Pemesanan sesuai data yang ada</h6>
-        <form action="" method="post" class="space-y-4 ">
-            <div>
-                <label for="pemesanan_id" class="block text-sm font-medium text-gray-600">Pemesanan ID</label>
-                <input type="text" id="pemesanan_id" name="pemesanan_id" placeholder="123" class="w-full p-2 mt-1 border rounded-md " required>
-            </div>
+        <form action="pemesananProses/prosesSimpanPemesanan.php" method="post" class="space-y-4 ">
             <div>
                 <label for="nik" class="block text-sm font-medium text-gray-600">NIK Customer</label>
                 <select class="w-full p-2 mt-1 border rounded-md" name="nik">
@@ -135,7 +131,7 @@ if (isset($_POST["submit"])) {
                     // Lakukan koneksi ke database sebelum menggunakan $conn
                     $queryuse = "SELECT * FROM user";
                     $resultuse = $conn->query($queryuse);
-                    while ($use = $resultuse->fetch_assoc()) :?>
+                    while ($use = $resultuse->fetch_assoc()) : ?>
                         <option value="<?= $use['user_id'] ?>"><?= $use['nik'] . ' - ' . $use['nama'] ?></option>
                     <?php endwhile; ?>
                 </select>
@@ -165,19 +161,23 @@ if (isset($_POST["submit"])) {
                     <?php endwhile; ?>
                 </select>
             </div>
-            <div><label for="tipe_kamar" class="block text-sm font-medium text-gray-600">Nomor Kamar</label></div>
-            <div id="showdata">
+            <div><label for="nomor_kamar" class="block text-sm font-medium text-gray-600">Nomor Kamar</label></div>
+            <div>
+                <select id="showdata" class="w-full p-2 mt-1 border rounded-md" name="nomor_kamar">
+                    <!-- Options will be added here by JavaScript -->
+                </select>
             </div>
+
 
             <div>
                 <label for="harga_kamar" class="block text-sm font-medium text-gray-600">Harga Kamar Per Malam</label>
-                <input type="number" name="harga_kamar" id="harga_kamar" placeholder="700000" class="w-full p-2 mt-1 border rounded-md" required><br>
+                <input type="number" name="harga_kamar" id="harga_kamar" placeholder="xxxxxx" class="w-full p-2 mt-1 border rounded-md" readonly><br>
             </div>
-            
+
             <div>
                 <label for="fasilitas_plus" class="block text-sm font-medium text-gray-600">Fasilitas Plus</label>
                 <select name="fasilitas_plus" class="w-full p-2 mt-1 border rounded-md" required>
-                <option selected>--Pilih Fasilitas Plus--</option>
+                    <option selected>--Pilih Fasilitas Plus--</option>
                     <option value="sarapan">Sarapan</option>
                     <option value="tidak_sarapan">Tidak Sarapan</option>
                 </select><br>
@@ -193,51 +193,56 @@ if (isset($_POST["submit"])) {
 
 
     <script>
-    // Fungsi untuk mengubah format tampilan tanggal menjadi "tanggal-bulan-tahun"
-    function formatDateInput(inputId) {
-        var input = document.getElementById(inputId);
-        var dateValue = input.value; // Nilai tanggal dalam format ISO (YYYY-MM-DD)
-        var date = new Date(dateValue); // Buat objek Date dari nilai tanggal
-        
-        // Buat string dengan format "DD-MM-YYYY"
-        var formattedDate = ('0' + date.getDate()).slice(-2) + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + date.getFullYear();
-        
-        // Set nilai input dengan format tanggal baru
-        input.value = formattedDate;
-    }
+        // Fungsi untuk mengubah format tampilan tanggal menjadi "tanggal-bulan-tahun"
+        function formatDateInput(inputId) {
+            var input = document.getElementById(inputId);
+            var dateValue = input.value; // Nilai tanggal dalam format ISO (YYYY-MM-DD)
+            var date = new Date(dateValue); // Buat objek Date dari nilai tanggal
 
-    // Panggil fungsi formatDateInput saat halaman dimuat
-    window.onload = function() {
-        formatDateInput('tanggal_checkin');
-        formatDateInput('tanggal_checkout');
-    };
-</script>
+            // Buat string dengan format "DD-MM-YYYY"
+            var formattedDate = ('0' + date.getDate()).slice(-2) + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + date.getFullYear();
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $("#tipekamar").change(function() {
-            var tipekamarId = $(this).val();
+            // Set nilai input dengan format tanggal baru
+            input.value = formattedDate;
+        }
 
-            if (tipekamarId != "") {
-                $.ajax({
-                    type: "get",
-                    url: "ambilkamar.php",
-                    data: {
-                        tipekamarId: tipekamarId
-                    },
-                    cache: false,
-                    success: function(response) {
-                        $('#showdata').html(response);
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(xhr);
-                    }
-                });
-            }
+        // Panggil fungsi formatDateInput saat halaman dimuat
+        window.onload = function() {
+            formatDateInput('tanggal_checkin');
+            formatDateInput('tanggal_checkout');
+        };
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#tipekamar").change(function() {
+                var tipekamarId = $(this).val();
+                var checkin = $('#tanggal_checkin').val();
+
+                if (tipekamarId != "") {
+                    $.ajax({
+                        type: "get",
+                        url: "ambilkamar.php",
+                        data: {
+                            tipekamarId: tipekamarId,
+                            checkin: checkin
+                        },
+                        cache: false,
+                        success: function(response) {
+                            var data = JSON.parse(response);
+                            $('#showdata').html(data.html); // Tampilkan opsi kamar
+                            $('#harga_kamar').val(data.harga);
+                            console.log(data);
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr);
+                        }
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 

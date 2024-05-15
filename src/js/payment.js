@@ -13,13 +13,6 @@ payButton.addEventListener("click", async function (e) {
     data.append("localData", localData);
   }
 
-  // Mengambil nilai input
-  const nik = document.querySelector('input[name="nik"]').value;
-  const nama = document.querySelector('input[name="nama"]').value;
-  const email = document.querySelector('input[name="email"]').value;
-  const kontak = document.querySelector('input[name="kontak"]').value;
-  const alamat = document.querySelector('input[name="alamat"]').value;
-
   try {
     const response = await fetch("function/payment.php", {
       method: "POST",

@@ -34,28 +34,30 @@ CREATE TABLE IF NOT EXISTS `detailpemesanan` (
   CONSTRAINT `FK_detailpemesanan_kamar` FOREIGN KEY (`kamar_id`) REFERENCES `kamar` (`kamar_id`),
   CONSTRAINT `FK_detailpemesanan_pemesanan` FOREIGN KEY (`pemesanan_id`) REFERENCES `pemesanan` (`pemesanan_id`),
   CONSTRAINT `FK_detailpemesanan_tipekamar` FOREIGN KEY (`tipe_kamar`) REFERENCES `tipekamar` (`tipe_kamar_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table hotel.detailpemesanan: ~0 rows (approximately)
+REPLACE INTO `detailpemesanan` (`detail_pemesanan_id`, `pemesanan_id`, `kamar_id`, `tipe_kamar`, `harga_kamar_per_malam`, `fasilitas_plus`) VALUES
+	(1, 810890, 'SDB-001', 2, 2400000.00, 'Sarapan'),
+	(2, 896559, 'SDB-001', 2, 2400000.00, 'Sarapan'),
+	(3, 819618, 'SDB-002', 2, 700000.00, 'Tanpa Sarapan'),
+	(4, 441755, 'SDB-002', 2, 1600000.00, 'Sarapan');
 
 -- Dumping structure for table hotel.kamar
 CREATE TABLE IF NOT EXISTS `kamar` (
   `kamar_id` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `nomor_kamar` int NOT NULL,
   `tipe_kamar_id` int DEFAULT NULL,
-  `harga_kamar` int NOT NULL,
-  `fasilitas` enum('Sarapan','Tanpa Sarapan') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `status_kamar` enum('tersedia','dipesan','ditempati') COLLATE utf8mb4_general_ci DEFAULT 'tersedia',
-  `booking_date` varchar(500) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `booking_date` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '[]',
   PRIMARY KEY (`kamar_id`),
   KEY `tipe_kamar_id` (`tipe_kamar_id`),
   CONSTRAINT `kamar_ibfk_1` FOREIGN KEY (`tipe_kamar_id`) REFERENCES `tipekamar` (`tipe_kamar_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table hotel.kamar: ~2 rows (approximately)
-REPLACE INTO `kamar` (`kamar_id`, `nomor_kamar`, `tipe_kamar_id`, `harga_kamar`, `fasilitas`, `status_kamar`, `booking_date`) VALUES
-	('SDB-001', 1, 2, 520000, 'Tanpa Sarapan', 'tersedia', '["2024-05-06","2024-05-07","2024-05-08","2024-05-06","2024-05-07","2024-05-08","2024-05-06","2024-05-07","2024-05-08","2024-05-11"]'),
-	('SDB-002', 2, 2, 670000, 'Sarapan', 'tersedia', NULL);
+REPLACE INTO `kamar` (`kamar_id`, `nomor_kamar`, `tipe_kamar_id`, `booking_date`) VALUES
+	('SDB-001', 1, 2, '["2024-05-13","2024-05-14","2024-05-15","2024-05-13","2024-05-14","2024-05-15"]'),
+	('SDB-002', 2, 2, '["2024-05-13","2024-05-14","2024-05-15"]');
 
 -- Dumping structure for table hotel.pegawai
 CREATE TABLE IF NOT EXISTS `pegawai` (
@@ -88,6 +90,11 @@ CREATE TABLE IF NOT EXISTS `pemesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table hotel.pemesanan: ~0 rows (approximately)
+REPLACE INTO `pemesanan` (`pemesanan_id`, `user_id`, `tanggal_pesan`, `tanggal_checkin`, `tanggal_checkout`, `jumlah_tamu`, `total_harga`, `status_pemesanan`) VALUES
+	(441755, 122094, '2024-05-13', '2024-05-14', '2024-05-16', 2, 1600000.00, 'proses'),
+	(810890, 529630, '2024-05-13', '2024-05-13', '2024-05-16', 2, 2400000.00, 'proses'),
+	(819618, 313601, '2024-05-13', '2024-05-13', '2024-05-14', 1, 700000.00, 'proses'),
+	(896559, 199909, '2024-05-13', '2024-05-13', '2024-05-16', 2, 2400000.00, 'proses');
 
 -- Dumping structure for table hotel.posisi
 CREATE TABLE IF NOT EXISTS `posisi` (
@@ -134,10 +141,14 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table hotel.user: ~0 rows (approximately)
+REPLACE INTO `user` (`user_id`, `nik`, `email`, `nama`, `alamat`, `no_telepon`) VALUES
+	(122094, '987654321631', 'test@gmail.com', 'Rent', 'Asahan', '245436346346'),
+	(199909, '1209224910100001', 'test@gmail.com', 'Ponsel Kita', 'Medan', '08973328262'),
+	(313601, '12345678986', 'm.bobbyoktaviano@gmail.com', 'Muhammad Bobby', 'Asahan', '08973328262'),
+	(529630, '22091020230003', 'test@gmail.com', 'Ponsel Kita', 'Medan', '08973328262');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
-hoteltipekamar
