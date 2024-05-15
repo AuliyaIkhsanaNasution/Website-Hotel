@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if(isset($_SESSION['login'])) {
+  header("Location: build/pages/dashboard.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +22,18 @@
 
 </head>
 
+<?php 
+if(isset($_GET['login'])  == "false") {
+  echo "<script>
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Username atau Password yang anda masukkan salah!'
+    })
+  </script>";
+}
+?>
+
 <body class="hidden-x-overflow bg-blue-50">
   <div class="absolute top-0 left-0 logo">
     <img src="build/assets/img/logo.png" alt="logo" class="w-20 bg-blue-500 shadow-md rounded-br-xl" />
@@ -31,7 +50,7 @@
       <input type="text" name="username" id="username" required class="block w-full mt-1 text-sm bg-white border rounded-md shadow-sm lg:p-2 border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-blue-800 invalid:text-yellow-500 focus:invalid:border-blue-500 focus:invalid:ring-blue-500" /><br />
 
       <label for="password" class="font-bold lg:text-xl">Password :</label><br />
-      <input type="password" name="username" id="username" class="block w-full mt-1 text-sm bg-white border rounded-md shadow-sm lg:p-2 border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-blue-800 invalid:text-yellow-500 focus:invalid:border-blue-500 focus:invalid:ring-blue-500" /><br />
+      <input type="password" name="password" id="password" class="block w-full mt-1 text-sm bg-white border rounded-md shadow-sm lg:p-2 border-slate-300 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200 disabled:shadow-none invalid:border-blue-800 invalid:text-yellow-500 focus:invalid:border-blue-500 focus:invalid:ring-blue-500" /><br />
 
 
       <button type="submit" name="submit" value="login" class="block p-2 px-4 py-2 m-auto font-semibold bg-yellow-300 border-2 border-blue-500 rounded-full hover:bg-yellow-500 hover:text-blue-900 hover:scale-110 lg:font-bold lg:text-lg lg:px-6 lg:py-3 lg:mt-5">

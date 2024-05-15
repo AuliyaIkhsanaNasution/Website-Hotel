@@ -1,5 +1,10 @@
 <?php 
 require "function/koneksi.php";
+session_start();
+
+if(!isset($_SESSION['login']) && !isset($_SESSION['user'])) {
+  header("Location: ../../index.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +33,7 @@ require "function/koneksi.php";
 
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-100 text-slate-500">
   <div class="absolute w-full bg-blue-700 min-h-75 "></div>
+ 
   <!-- sidenav  -->
   <aside class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl  max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0" aria-expanded="false">
     <div class="h-19">
@@ -52,6 +58,7 @@ require "function/koneksi.php";
           </a>
         </li>
 
+        <?php if($_SESSION['level'] == 1 || $_SESSION['level'] == 2) : ?>
         <li class="mt-0.5 w-full">
           <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datacustomer.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -60,7 +67,9 @@ require "function/koneksi.php";
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Customer</span>
           </a>
         </li>
+        <?php endif; ?>
 
+        <?php if($_SESSION['level'] == 1) : ?>
         <li class="mt-0.5 w-full">
           <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapegawai.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -69,6 +78,7 @@ require "function/koneksi.php";
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Pegawai</span>
           </a>
         </li>
+        <?php endif; ?>
 
         <li class="mt-0.5 w-full">
           <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datakamar.php">
@@ -89,6 +99,7 @@ require "function/koneksi.php";
         </li>
 
 
+        <?php if($_SESSION['level'] == 1 || $_SESSION['level'] == 2) : ?>
         <li class="mt-0.5 w-full">
           <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapemesanan.php">
             <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -97,7 +108,7 @@ require "function/koneksi.php";
             <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Transaksi Pemesanan</span>
           </a>
         </li>
-
+          <?php endif; ?>
 
       </ul>
     </div>
@@ -116,10 +127,9 @@ require "function/koneksi.php";
       </div>
 
       <!-- pro btn  -->
-      <a class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-red-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px" href="logout.php">LOG OUT</a>
+      <a class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-red-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px" href="../../auth/logout.php">LOG OUT</a>
     </div>
   </aside>
-
   <!-- end sidenav -->
 
   <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
@@ -154,9 +164,11 @@ require "function/koneksi.php";
 
     <!-- end Navbar -->
 
+    
     <!-- cards -->
     <div class="w-full px-6 py-6 mx-auto">
       <!-- row 1 -->
+      <?php if($_SESSION['level'] == 1) : ?>
       <div class="flex flex-wrap -mx-3">
         <!-- card1 -->
           <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
@@ -220,7 +232,7 @@ require "function/koneksi.php";
               </div>
             </div>
           </div>
-
+        
         <!-- card3 -->
           <div class="w-full max-w-full px-3 sm:w-1/2 sm:flex-none xl:w-1/4">
             <div class="relative flex flex-col min-w-0 break-words bg-white shadow-xl  rounded-2xl bg-clip-border">
@@ -281,7 +293,7 @@ require "function/koneksi.php";
             </div>
           </div>
       </div>
-
+      <?php endif; ?>
 
     <!-- cards row 2 -->
     <div class="flex flex-wrap mt-6 -mx-3">

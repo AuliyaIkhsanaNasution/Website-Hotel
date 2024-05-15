@@ -7,29 +7,35 @@ $pegawai_id = $_GET["id"];
 $sql = "SELECT * FROM pegawai, posisi WHERE pegawai.pegawai_id = '$pegawai_id' AND pegawai.posisi_id = posisi.posisi_id";
 $hasil = $conn->query($sql);
 
+$error = '';
+
 // memanggil apabila tombol submit di klik
-if (isset($_POST["ubah"])) {
-    $pegawai_id = htmlspecialchars($_POST['pegawai_id']);
+if (isset($_POST["submit"])) {
     $email = htmlspecialchars($_POST['email']);
     $nama = htmlspecialchars($_POST['nama']);
     $alamat = htmlspecialchars($_POST['alamat']);
     $no_telepon = htmlspecialchars($_POST['no_telepon']);
     $posisi_id = htmlspecialchars($_POST['posisi_id']);
+    $username = htmlspecialchars($_POST['username']);
+    $password = htmlspecialchars($_POST['password']);
+    $password2 = htmlspecialchars($_POST['password2']);
 
-
-    $query = "UPDATE pegawai SET
-    email = '$email',
-    nama = '$nama',   
-    alamat = '$alamat',
-    no_telepon = '$no_telepon',
-    posisi_id = '$posisi_id'
-WHERE pegawai_id = '$pegawai_id'";
-
-if (mysqli_query($conn, $query) === TRUE) {
-    header("location: ../datapegawai.php?ubah=true");
-} else {
-    echo "Error: " . $query . "<br>" . $conn->error;
-}
+    // check username di database, kecuali untuk username pegawai yang sedang diedit
+    $check = mysqli_query($conn, "SELECT username FROM pegawai WHERE username='$username' AND pegawai_id != '$pegawai_id'");
+    if (mysqli_fetch_assoc($check)) {
+        $error = 'Username already exists.';
+    } elseif ($password !== $password2) {
+        $error = 'Passwords do not match.';
+    } else {
+        // Update data pegawai dalam database
+        $query = "UPDATE pegawai SET email='$email', nama='$nama', alamat='$alamat', no_telepon='$no_telepon', posisi_id='$posisi_id', username='$username', password='$password' WHERE pegawai_id='$pegawai_id'";
+        if ($conn->query($query) === TRUE) {
+            header("location: ../datapegawai.php?edit=true");
+            exit;
+        } else {
+            $error = "Error: " . $query . "<br>" . $conn->error;
+        }
+    }
 }
 ?>
 
@@ -45,9 +51,18 @@ if (mysqli_query($conn, $query) === TRUE) {
     <title>Form Edit Data Pegawai</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <script>
+        // Function to display alert if there is an error
+        function showAlert(message) {
+            if (message) {
+                alert(message);
+            }
+        }
+    </script>
 </head>
 
-<body class="p-6 bg-blue-200">
+<body class="p-6 bg-blue-200" onload="showAlert('<?php echo $error; ?>')">
+
 
 <?php while ($pgw = $hasil->fetch_assoc()) { ?> 
 
@@ -55,10 +70,7 @@ if (mysqli_query($conn, $query) === TRUE) {
         <h2 class="mb-3 text-2xl font-bold text-center text-slate-600 ">Edit Data Pegawai</h2>
         <h6 class="mb-5 text-sm text-slate-500 ">*harap isi data Pegawai sesuai data yang ada</h6>
         <form action="" method="post" class="space-y-4 ">
-            <div>
-                <label for="pegawai_id" class="block text-sm font-medium text-gray-600">ID Pegawai</label>
-                <input type="text" id="pegawai_id" name="pegawai_id" placeholder="PGW-2" class="w-full p-2 mt-1 border rounded-md " value="<?php echo $pgw['pegawai_id']; ?>" readonly>
-            </div>
+
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-600">Email Pegawai</label>
                 <input type="text" id="email" name="email" placeholder="example@gmail.com" class="w-full p-2 mt-1 border rounded-md" required value="<?php echo $pgw['email']; ?>"></input>
@@ -92,7 +104,19 @@ if (mysqli_query($conn, $query) === TRUE) {
                 </select>
             </div>
             <div>
-                <button type="submit" name="ubah" class="w-full p-2 text-white bg-blue-700 rounded-md hover:bg-blue-300">Simpan</button>
+                <label for="username" class="block text-sm font-medium text-gray-600">Username Pegawai</label>
+                <input type="text" id="username" name="username" placeholder="Andixxx" class="w-full p-2 mt-1 border rounded-md" required value="<?php echo $pgw['username']; ?>">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-600">Password Pegawai</label>
+                <input type="password" id="password" name="password" placeholder="xxxxxx" class="w-full p-2 mt-1 border rounded-md" required value="<?php echo $pgw['password']; ?>">
+            </div>
+            <div>
+                <label for="password2" class="block text-sm font-medium text-gray-600">Konfirmasi Password Pegawai</label>
+                <input type="password" id="password2" name="password2" placeholder="xxxxxx" class="w-full p-2 mt-1 border rounded-md" required value="<?php echo $pgw['password']; ?>">
+            </div>
+            <div>
+                <button type="submit" name="ubah" class="w-full p-2 text-white bg-blue-700 rounded-md hover:bg-blue-300" >Simpan</button>
             </div>
         </form>
     </div>
