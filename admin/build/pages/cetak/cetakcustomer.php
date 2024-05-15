@@ -1,9 +1,13 @@
 <?php
 require "../function/koneksi.php";
-require '../../../vendor/autoload.php';
+require '../../../../vendor/autoload.php';
+session_start();
 
 use Dompdf\Dompdf;
-use Dompdf\Options;
+
+$username = $_SESSION['user'];
+$user = mysqli_query($conn, "SELECT * FROM pegawai JOIN posisi ON posisi.posisi_id = pegawai.posisi_id WHERE pegawai.username = '$username'");
+$dataUser = mysqli_fetch_array($user);
 
 // Mengambil data dari database
 $query = "SELECT * FROM user";
@@ -35,7 +39,7 @@ $html = '
 </head>
 <body>
     <div class="header">
-        <img src="logo.png" alt="Logo" width="100">
+        <img src="logo.png" alt="Logo">
         <h1>Hotel Nuansa Nusantara</h1>
         <p>Jl. Contoh Alamat No. 123, Kota, Negara</p>
         <p>Telepon: 0123-456789</p>
@@ -83,29 +87,23 @@ $html .= '
         <div class="right">
         <p>Medan, ' . date('d F Y') . '</p>
             <p>Dibuat Oleh</p>
-            <p>Pimpinan</p>
-            <div class="sign">(_________________)</div>
+            <p>' . $dataUser['posisi'] . '</p>
+            <div class="sign">( ' . $dataUser['nama'] . ' )</div>
         </div>
     </div>
 </body>
 </html>';
 
 
-// Inisialisasi Dompdf dengan opsi
-$options = new Options();
-$options->set('isRemoteEnabled', true);
-
-$dompdf = new Dompdf($options);
-
-// Load konten HTML ke Dompdf
+// instantiate and use the dompdf class
+$dompdf = new Dompdf();
 $dompdf->loadHtml($html);
 
-// Set ukuran dan orientasi kertas
-$dompdf->setPaper('A4', 'portrait');
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'landscape');
 
-// Render konten HTML ke PDF
+// Render the HTML as PDF
 $dompdf->render();
 
-// Output file PDF ke browser
-$dompdf->stream('Data_Customer.pdf', array("Attachment" => false));
-?>
+// Output the generated PDF to Browser
+$dompdf->stream('Data-Customer.pdf');

@@ -1,8 +1,8 @@
-<?php 
+<?php
 require "function/koneksi.php";
 session_start();
 
-if(!isset($_SESSION['login']) && !isset($_SESSION['user'])) {
+if (!isset($_SESSION['login']) && !isset($_SESSION['user'])) {
   header("Location: ../../index.php");
 }
 
@@ -42,15 +42,15 @@ $hasil = $conn->query($query);
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
-<body class="m-0 font-sans text-base antialiased font-normal  leading-default bg-gray-50 text-slate-500">
-  <div class="absolute w-full bg-blue-700  min-h-75"></div>
+<body class="m-0 font-sans text-base antialiased font-normal leading-default bg-gray-50 text-slate-500">
+  <div class="absolute w-full bg-blue-700 min-h-75"></div>
 
   <!-- sidenav  -->
-  <aside class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl  max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0" aria-expanded="false">
+  <aside class="fixed inset-y-0 flex-wrap items-center justify-between block w-full p-0 my-4 overflow-y-auto antialiased transition-transform duration-200 -translate-x-full bg-white border-0 shadow-xl max-w-64 ease-nav-brand z-990 xl:ml-6 rounded-2xl xl:left-0 xl:translate-x-0" aria-expanded="false">
     <div class="h-19">
       <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times text-slate-400 xl:hidden" sidenav-close></i>
       <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap text-slate-700" href="dashboard.php" target="_blank">
-        <img src="../assets/img/logo.png" class="inline h-full max-w-full transition-all duration-200  ease-nav-brand max-h-8 rounded-full" alt="main_logo" />
+        <img src="../assets/img/logo.png" class="inline h-full max-w-full transition-all duration-200 rounded-full ease-nav-brand max-h-8" alt="main_logo" />
         <img src="" class="hidden h-full max-w-full transition-all duration-200 ease-nav-brand max-h-8 " alt="main_logo" />
         <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Nuansa Nusantara</span>
       </a>
@@ -69,26 +69,26 @@ $hasil = $conn->query($query);
           </a>
         </li>
 
-        <?php if($_SESSION['level'] == 1 || $_SESSION['level'] == 2) : ?>
-        <li class="mt-0.5 w-full">
-          <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datacustomer.php">
-            <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-              <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
-            </div>
-            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Customer</span>
-          </a>
-        </li>
+        <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2) : ?>
+          <li class="mt-0.5 w-full">
+            <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datacustomer.php">
+              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
+              </div>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Customer</span>
+            </a>
+          </li>
         <?php endif; ?>
 
-        <?php if($_SESSION['level'] == 1) : ?>
-        <li class="mt-0.5 w-full">
-          <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapegawai.php">
-            <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-              <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
-            </div>
-            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Pegawai</span>
-          </a>
-        </li>
+        <?php if ($_SESSION['level'] == 1) : ?>
+          <li class="mt-0.5 w-full">
+            <a class="  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapegawai.php">
+              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-calendar-grid-58"></i>
+              </div>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Data Pegawai</span>
+            </a>
+          </li>
         <?php endif; ?>
 
         <li class="mt-0.5 w-full">
@@ -110,16 +110,16 @@ $hasil = $conn->query($query);
         </li>
 
 
-        <?php if($_SESSION['level'] == 1 || $_SESSION['level'] == 2) : ?>
-        <li class="mt-0.5 w-full">
-          <a class="bg-blue-500/13  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapemesanan.php">
-            <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
-              <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i>
-            </div>
-            <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Transaksi Pemesanan</span>
-          </a>
-        </li>
-          <?php endif; ?>
+        <?php if ($_SESSION['level'] == 1 || $_SESSION['level'] == 2) : ?>
+          <li class="mt-0.5 w-full">
+            <a class="bg-blue-500/13  py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors" href="datapemesanan.php">
+              <div class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
+                <i class="relative top-0 text-sm leading-normal text-cyan-500 ni ni-app"></i>
+              </div>
+              <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">Transaksi Pemesanan</span>
+            </a>
+          </li>
+        <?php endif; ?>
 
       </ul>
     </div>
@@ -155,7 +155,7 @@ $hasil = $conn->query($query);
             </li>
             <li class="text-sm pl-2 capitalize leading-normal text-white before:float-left before:pr-2 before:text-white before:content-['/']" aria-current="page">Data Pemesanan</li>
           </ol>
-          <h6 class="mb-0 font-bold text-white capitalize text-2xl">Data Pemesanan</h6>
+          <h6 class="mb-0 text-2xl font-bold text-white capitalize">Data Pemesanan</h6>
         </nav>
 
         <div class="flex items-center mt-2 grow sm:mt-0 sm:mr-6 md:mr-0 lg:flex lg:basis-auto">
@@ -166,7 +166,7 @@ $hasil = $conn->query($query);
             <!-- <li class="flex items-center">
                 <a class="inline-block px-8 py-2 mb-0 mr-4 text-xs font-bold text-center text-blue-500 uppercase align-middle transition-all ease-in bg-transparent border border-blue-500 border-solid rounded-lg shadow-none cursor-pointer leading-pro hover:-translate-y-px active:shadow-xs hover:border-blue-500 active:bg-blue-500 active:hover:text-blue-500 hover:text-blue-500 tracking-tight-rem hover:bg-transparent hover:opacity-75 hover:shadow-none active:text-white active:hover:bg-transparent" target="_blank" href="https://www.creative-tim.com/builder/soft-ui?ref=navbar-dashboard&amp;_ga=2.76518741.1192788655.1647724933-1242940210.1644448053">Online Builder</a>
               </li> -->
-              <li class="flex items-center">
+            <li class="flex items-center">
               <a href="profile.php" class="block px-4 py-2 text-sm font-semibold text-white transition-all ease-nav-brand">
                 <i class="fa fa-floppy-o sm:mr-1"></i>
                 <span class="hidden sm:inline">Print</span>
@@ -191,89 +191,91 @@ $hasil = $conn->query($query);
     <!-- end Navbar -->
 
     <!-- table -->
-    <div class="mb-10 mt-5 w-fit">
-      <a href="function/tambahpemesanan.php" class="block ms-8 mt-3 py-3 px-6 rounded-lg bg-yellow-400 text-gray-800 hover:bg-slate-200 hover:scale-110 font-bold ">Tambah Data Pemesanan</a>
+    <div class="mt-5 mb-10 w-fit">
+      <a href="function/tambahpemesanan.php" class="block px-6 py-3 mt-3 font-bold text-gray-800 bg-yellow-400 rounded-lg ms-8 hover:bg-slate-200 hover:scale-110 ">Tambah Data Pemesanan</a>
     </div>
 
 
     <!-- alert -->
     <?php
-                if (isset($_GET['tambah'])) : ?>
-                  <script>
-                    Swal.fire("Data Pemesanan Berhasil Ditambahkan");
-                  </script>
-                <?php endif; ?>
+    if (isset($_GET['tambah'])) : ?>
+      <script>
+        Swal.fire("Data Pemesanan Berhasil Ditambahkan");
+      </script>
+    <?php endif; ?>
 
-                <?php
-                if (isset($_GET['ubah'])) : ?>
-                  <script>
-                    Swal.fire("Data Pemesanan Berhasil Diupdate");
-                  </script>
-                <?php endif; ?>
+    <?php
+    if (isset($_GET['ubah'])) : ?>
+      <script>
+        Swal.fire("Data Pemesanan Berhasil Diupdate");
+      </script>
+    <?php endif; ?>
 
-                <?php
-                if (isset($_GET['hapus'])) : ?>
-                  <script>
-                    Swal.fire("Data Pemesanan Berhasil Dihapus");
-                  </script>
-                <?php endif; ?>
-                <!-- akhir alert -->
-                
+    <?php
+    if (isset($_GET['hapus'])) : ?>
+      <script>
+        Swal.fire("Data Pemesanan Berhasil Dihapus");
+      </script>
+    <?php endif; ?>
+    <!-- akhir alert -->
+
 
     <!-- table 1 -->
 
-    <div class="flex flex-wrap -mx-3 ms-5 mt-4 me-4">
+    <div class="flex flex-wrap mt-4 -mx-3 ms-5 me-4">
       <div class="flex-none w-full max-w-full px-3">
-        <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl  rounded-2xl bg-clip-border">
+        <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl rounded-2xl bg-clip-border">
           <div class="p-6 pb-0 mb-0 border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-            <h6 class=" font-semibold text-lg">Data Pemesanan</h6>
+            <h6 class="text-lg font-semibold ">Data Pemesanan</h6>
           </div>
           <div class="flex-auto px-0 pt-0 pb-2 ">
             <div class="p-0 overflow-x-auto">
-              <table class="items-center w-full mb-0 align-top border-collapse  text-slate-500">
+              <table class="items-center w-full mb-0 align-top border-collapse text-slate-500">
                 <thead class="align-bottom">
                   <tr>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b  #FFFFFFborder-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">Pemesanan ID</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nama Customer</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tanggal Check-In</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Jumlah Tamu</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Status Pemesanan</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Control</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nama Customer</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tanggal Check-In</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Jumlah Tamu</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Status Pemesanan</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Control</th>
                   </tr>
                 </thead>
                 <tbody class="align-center ">
-                <?php 
+                  <?php
 
 
-              while ($pesan = $hasil->fetch_assoc()) {
-          ?>
+                  while ($pesan = $hasil->fetch_assoc()) {
+                  ?>
 
-                    <center><tr>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%] "><?= $pesan['pemesanan_id'] ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $pesan['nama'] ?>
-                      </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= date('d-m-Y', strtotime($pesan['tanggal_checkin'])) ?>
-                    </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pesan['jumlah_tamu'] ?>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pesan['status_pemesanan'] ?>
-                      </td>
-                      <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
+                    <center>
+                      <tr>
+                        <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%] "><?= $pesan['pemesanan_id'] ?>
+                        </td>
+                        <td class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"><?= $pesan['nama'] ?>
+                        </td>
+                        <td class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"><?= date('d-m-Y', strtotime($pesan['tanggal_checkin'])) ?>
+                        </td>
+                        <td class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"><?= $pesan['jumlah_tamu'] ?>
+                        <td class="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"><?= $pesan['status_pemesanan'] ?>
+                        </td>
+                        <td class="inline-block p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
 
-                      <a class=" button block items-center px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" href="function/detailpemesanan.php?id=<?= htmlspecialchars($pesan['pemesanan_id']) ?>">Detail</a>
-                      
-                      <?php if ($pesan['status_pemesanan'] == 'proses') { ?>
-                          <a class="button block items-center px-4 py-2 bg-green-500 text-white text-sm font-medium rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=dikonfirmasi">Checkin</a>
-                          <a class="button block items-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=batal">Batal</a>
-                      <?php } elseif ($pesan['status_pemesanan'] == 'dikonfirmasi') { ?>
-                          <a class="button block items-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=selesai">Checkout</a>
-                      <?php } ?>
+                          <a class="items-center block px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded  button hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" href="function/detailpemesanan.php?id=<?= htmlspecialchars($pesan['pemesanan_id']) ?>">Detail</a>
 
-                      <a class=" button block items-center px-4 py-2 bg-red-500 text-white text-sm font-medium rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" href="function/hapuspemesanan.php?id=<?= htmlspecialchars($pesan['pemesanan_id']) ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');">Hapus</a>
+                          <?php if ($pesan['status_pemesanan'] == 'proses') { ?>
+                            <a class="items-center block px-4 py-2 text-sm font-medium text-white bg-green-500 rounded button hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=dikonfirmasi">Checkin</a>
+                            <a class="items-center block px-4 py-2 text-sm font-medium text-white bg-yellow-500 rounded button hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=batal">Batal</a>
+                          <?php } elseif ($pesan['status_pemesanan'] == 'dikonfirmasi') { ?>
+                            <a class="items-center block px-4 py-2 text-sm font-medium text-white bg-yellow-500 rounded button hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500" href="function/update_status.php?id=<?= $pesan['pemesanan_id'] ?>&status=selesai">Checkout</a>
+                          <?php } ?>
 
-                    </tr></center>
+                          <a class="items-center block px-4 py-2 text-sm font-medium text-white bg-red-500 rounded  button hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" href="function/hapuspemesanan.php?id=<?= htmlspecialchars($pesan['pemesanan_id']) ?>" onclick=" return confirm ('Apakah Anda Yakin Ingin Menghapus data Ini ?');">Hapus</a>
 
-                    <?php 
+                      </tr>
+                    </center>
+
+                  <?php
                   }
                   ?>
                 </tbody>
