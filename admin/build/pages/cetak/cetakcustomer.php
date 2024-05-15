@@ -3,6 +3,7 @@ require "../function/koneksi.php";
 require '../../../vendor/autoload.php';
 
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 // Mengambil data dari database
 $query = "SELECT * FROM user";
@@ -34,7 +35,7 @@ $html = '
 </head>
 <body>
     <div class="header">
-        <img src="../../assets/img/logo.png" alt="Logo" width="100">
+        <img src="logo.png" alt="Logo" width="100">
         <h1>Hotel Nuansa Nusantara</h1>
         <p>Jl. Contoh Alamat No. 123, Kota, Negara</p>
         <p>Telepon: 0123-456789</p>
@@ -89,8 +90,12 @@ $html .= '
 </body>
 </html>';
 
-// Inisialisasi Dompdf
-$dompdf = new Dompdf();
+
+// Inisialisasi Dompdf dengan opsi
+$options = new Options();
+$options->set('isRemoteEnabled', true);
+
+$dompdf = new Dompdf($options);
 
 // Load konten HTML ke Dompdf
 $dompdf->loadHtml($html);

@@ -2,9 +2,9 @@
 require "function/koneksi.php";
 
 // read
-$query = "SELECT pemesanan.pemesanan_id, user.nik, pemesanan.tanggal_pesan, pemesanan.tanggal_checkin, pemesanan.tanggal_checkout, pemesanan.jumlah_tamu, pemesanan.total_harga, pemesanan.status_pemesanan 
+$query = "SELECT pemesanan.pemesanan_id, user.nama,  pemesanan.tanggal_checkin,  pemesanan.jumlah_tamu,  pemesanan.status_pemesanan 
 FROM pemesanan  
-INNER JOIN user  ON pemesanan.user_id = user.user_id";
+INNER JOIN user  ON pemesanan.user_id = user.user_id ORDER BY tanggal_pesan DESC";
 $hasil = $conn->query($query);
 ?>
 
@@ -222,12 +222,9 @@ $hasil = $conn->query($query);
                 <thead class="align-bottom">
                   <tr>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b  #FFFFFFborder-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70 w-[5%]">Pemesanan ID</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">NIK Customer</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tanggal Pesan</th>
+                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Nama Customer</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tanggal Check-In</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Tanggal Check-Out</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Jumlah Tamu</th>
-                    <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Total Harga</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Status Pemesanan</th>
                     <th class="px-6 py-3 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none   text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-900 opacity-70">Control</th>
                   </tr>
@@ -235,23 +232,18 @@ $hasil = $conn->query($query);
                 <tbody class="align-center ">
                 <?php 
 
-              $num = 1;
+
               while ($pesan = $hasil->fetch_assoc()) {
           ?>
 
                     <center><tr>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%] "><?= $num ?>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center w-[5%] "><?= $pesan['pemesanan_id'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $pesan['nik'] ?>
+                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent  text-center"><?= $pesan['nama'] ?>
                       </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= date('d-m-Y', strtotime($pesan['tanggal_pesan'])) ?>
-                    </td>
                       <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= date('d-m-Y', strtotime($pesan['tanggal_checkin'])) ?>
                     </td>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= date('d-m-Y', strtotime($pesan['tanggal_checkout'])) ?>
-                    </td>
                       <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pesan['jumlah_tamu'] ?>
-                      <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pesan['total_harga'] ?>
                       <td class="p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center"><?= $pesan['status_pemesanan'] ?>
                       </td>
                       <td class="inline-block p-2 align-middle bg-transparent border-b  whitespace-nowrap shadow-transparent text-center">
@@ -269,7 +261,7 @@ $hasil = $conn->query($query);
 
                     </tr></center>
 
-                    <?php $num++;
+                    <?php 
                   }
                   ?>
                 </tbody>
