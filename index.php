@@ -1,8 +1,3 @@
-<?php
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
@@ -402,7 +397,7 @@
         <hr />
         <div class="flex items-center gap-2 my-2">
           <i class="p-2 px-3 text-sm rounded-full fa-solid fa-map bg-slate-200 text-amber-400"></i>
-          <a href="" class="text-sm font-light">Jalan Pertahanan</a>
+          <a href="" class="text-sm font-light">Jl. Jamin Ginting nomor.123</a>
         </div>
       </div>
       <div class="my-5 lg:my-8">
@@ -418,11 +413,11 @@
         <hr />
         <div class="flex items-center gap-2 my-2">
           <i class="p-2 px-3 text-sm rounded-full fa-solid fa-phone bg-slate-200 text-amber-400"></i>
-          <a href="" class="text-sm font-light">example@example.com</a>
+          <a href="" class="text-sm font-light">nuansanusantara10@gmail.com</a>
         </div>
       </div>
 
-      <a href="" class="text-white bg-amber-500 hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-5">Say Hello</a>
+      <a href="https://www.instagram.com/nuansanusantara.official?igsh=NG54MWR0Y2t0NnBs" class="text-white bg-amber-500 hover:bg-amber-800 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-5">Say Hello</a>
     </div>
 
     <div class="w-full lg:w-2/3">
@@ -437,7 +432,7 @@
       <div class="md:flex md:justify-between">
         <div class="mb-6 md:mb-0">
           <a href="https://flowbite.com/" class="flex items-center">
-            <img src="assets/images/logo.png" class="h-8 me-3" alt="FlowBite Logo" />
+            <img src="assets/images/logo.png" class="h-16 me-3" alt="FlowBite Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap">Nuansa Nusantara Hotel</span>
           </a>
         </div>

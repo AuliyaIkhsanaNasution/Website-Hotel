@@ -15,7 +15,7 @@ $user = mysqli_query($conn, "SELECT * FROM pegawai JOIN posisi ON posisi.posisi_
 $dataUser = mysqli_fetch_array($user);
 
 // Mengambil data dari database
-$query = "SELECT * FROM user";
+$query = "SELECT * FROM tipekamar";
 $hasil = $conn->query($query);
 
 // Menyiapkan konten HTML
@@ -51,17 +51,18 @@ $html = '
         <hr>
     </div>
     <div class="content">
-        <h2>Data Customer</h2>
+        <h2>Data Tipe Kamar</h2>
         <p>Periode: ' . date('F Y') . '</p>
         <table>
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIK</th>
-                    <th>Email</th>
-                    <th>Nama</th>
-                    <th>Alamat</th>
-                    <th>No Telepon</th>
+                    <th>Tipe Kamar</th>
+                    <th>Nama Tipe</th>
+                    <th>Jumlah Tamu</th>
+                    <th>Ukuran Kamar</th>
+                    <th>Harga Kamar</th>
+                    <th>Deskripsi</th>
                 </tr>
             </thead>
             <tbody>';
@@ -71,11 +72,13 @@ while ($user = $hasil->fetch_assoc()) {
     $html .= '
     <tr>
         <td>' . $num++ . '</td>
-        <td>' . $user['nik'] . '</td>
-        <td>' . $user['email'] . '</td>
-        <td>' . $user['nama'] . '</td>
-        <td>' . $user['alamat'] . '</td>
-        <td>' . $user['no_telepon'] . '</td>
+        <td>' . $user['slug'] . '</td>
+        <td>' . $user['nama_tipe'] . '</td>
+        <td>' . $user['jmlh_tamu'] . '</td>
+        <td>' . $user['ukuran'] . '</td>
+        <td>' . $user['harga'] . '</td>
+        <td>' . $user['deskripsi'] . '</td>
+
     </tr>';
 }
 

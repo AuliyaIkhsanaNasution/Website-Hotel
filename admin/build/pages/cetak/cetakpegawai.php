@@ -15,7 +15,9 @@ $user = mysqli_query($conn, "SELECT * FROM pegawai JOIN posisi ON posisi.posisi_
 $dataUser = mysqli_fetch_array($user);
 
 // Mengambil data dari database
-$query = "SELECT * FROM user";
+$query = "SELECT pegawai.pegawai_id, pegawai.email, pegawai.nama, pegawai.alamat, pegawai.no_telepon, posisi.posisi AS    nama_posisi
+FROM pegawai
+INNER JOIN posisi ON pegawai.posisi_id = posisi.posisi_id";
 $hasil = $conn->query($query);
 
 // Menyiapkan konten HTML
@@ -51,17 +53,17 @@ $html = '
         <hr>
     </div>
     <div class="content">
-        <h2>Data Customer</h2>
+        <h2>Data Pegawai</h2>
         <p>Periode: ' . date('F Y') . '</p>
         <table>
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>NIK</th>
                     <th>Email</th>
                     <th>Nama</th>
                     <th>Alamat</th>
                     <th>No Telepon</th>
+                    <th>Posisi</th>
                 </tr>
             </thead>
             <tbody>';
@@ -71,11 +73,11 @@ while ($user = $hasil->fetch_assoc()) {
     $html .= '
     <tr>
         <td>' . $num++ . '</td>
-        <td>' . $user['nik'] . '</td>
         <td>' . $user['email'] . '</td>
         <td>' . $user['nama'] . '</td>
         <td>' . $user['alamat'] . '</td>
         <td>' . $user['no_telepon'] . '</td>
+        <td>' . $user['nama_posisi'] . '</td>
     </tr>';
 }
 

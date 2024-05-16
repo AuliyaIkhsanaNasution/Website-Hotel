@@ -23,23 +23,23 @@
     <div class="relative h-screen overflow-hidden rounded-lg md:h-screen">
          <!-- Item 1 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="../assets/images/bed-1.jpg" class="absolute inset-0 object-cover object-center" alt="">
+            <img src="../assets/images/dtb2.jpeg" class="w-screen absolute inset-0 object-cover object-center" alt="">
         </div>
         <!-- Item 2 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-            <img src="../assets/images/bed-2.jpg" class="absolute inset-0 object-cover object-center" alt="">
+            <img src="../assets/images/stb2.jpeg" class="w-screen absolute inset-0 object-cover object-center" alt="">
         </div>
         <!-- Item 3 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="../assets/images/bed-3.jpg" class="absolute inset-0 object-cover object-center" alt="">
+            <img src="../assets/images/tematik1.jpeg" class="w-screen absolute inset-0 object-cover object-center" alt="">
         </div>
         <!-- Item 4 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="../assets/images/deluxe1.jpg" class="absolute inset-0 object-cover object-center" alt="">
+            <img src="../assets/images/dtb4.jpeg" class="w-screen absolute inset-0 object-cover object-center" alt="">
         </div>
         <!-- Item 5 -->
         <div class="hidden duration-700 ease-in-out" data-carousel-item>
-            <img src="../assets/images/fasilitas-3.jpg" class="absolute inset-0 object-cover object-center" alt="">
+            <img src="../assets/images/stb3.jpeg" class="w-screen absolute inset-0 object-cover object-center" alt="">
         </div>
     </div>
     <!-- Slider controls -->
@@ -65,7 +65,7 @@
     <!-- detai kamar -->
     <section>
     <h3 class="text-3xl text-slate-800 font-semibold pt-10 pb-5 ms-5 text-center lg:text-5xl lg:font-semibold" data-aos="fade-right" style="font-family: 'Great Vibes';">Tematik</h3>
-    <p class="text-justify text-lg lg:text-base mx-28 px-11 mb-11" data-aos="fade-left">Kamar Tematik seluas 30 meter persegi dengan tempat tidur queen atau twin dilengkapi dengan seni klasik-modern yang menawarkan kenyamanan, dilengkapi dengan shower berdiri air panas & dingin, TV LED 42″, akses Wi-Fi berkecepatan tinggi gratis, lemari pakaian, di - Fasilitas pembuat kopi & teh di kamar, air mineral gratis, sandal, kursi sofa yang nyaman, dan balkon menyempurnakan lingkungan sekitar. Kamar terhubung tersedia berdasarkan permintaan. Untuk kenyamanan yang terjangkau, menginap di Hotel Bogor bernilai tinggi. Kamar Tematik adalah pilihan bagus yang dapat dinikmati siapa saja.</p>
+    <p class="text-justify text-lg lg:text-base mx-28 px-11 mb-11" data-aos="fade-left">Kamar Tematik seluas 32 meter persegi dengan tempat tidur queen atau twin dilengkapi dengan seni klasik-modern yang menawarkan kenyamanan, dilengkapi dengan shower berdiri air panas & dingin, TV LED 42″, akses Wi-Fi berkecepatan tinggi gratis, lemari pakaian, di - Fasilitas pembuat kopi & teh di kamar, air mineral gratis, sandal, kursi sofa yang nyaman, dan balkon menyempurnakan lingkungan sekitar. Kamar terhubung tersedia berdasarkan permintaan. Untuk kenyamanan yang terjangkau, menginap di Hotel Bogor bernilai tinggi. Kamar Tematik adalah pilihan bagus yang dapat dinikmati siapa saja.</p>
     </section>
     <!-- akhir detail kamar -->
 
